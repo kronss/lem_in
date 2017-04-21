@@ -26,12 +26,13 @@
 
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include <fcntl.h>
 
-
-
-
-
-#include <fcntl.h>
+typedef struct	s_data
+{
+	int			n_ants;
+	
+}				t_data;
 
 
 
