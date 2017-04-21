@@ -12,13 +12,13 @@
 
 GCC = gcc
 
-F = -Wall -Wextra -Werror
+# F = -Wall -Wextra -Werror
 
 NAME = lem_in
 
 INCL = libft/libft.a ft_printf/libftprintf.a
 
-OBJECT = main.o \
+OBJECT = main.o error_lem_in.o
 
 .PHONY: all clean fclean re bug debug
 
