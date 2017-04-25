@@ -22,6 +22,9 @@
 # define STDIN	0
 # define STDOUT	1
 
+# define FALSE	0
+# define TRUE	1
+
 typedef struct		s_list
 {
 	void			*content;

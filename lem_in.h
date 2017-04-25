@@ -30,8 +30,10 @@
 
 typedef struct	s_data
 {
-	int			n_ants;
-	
+	int			max_ants;
+	int			cmd_node;
+	int			create_room_permissions;
+
 }				t_data;
 
 

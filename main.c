@@ -18,36 +18,6 @@ static void	usage(void)
 	exit(1);
 }
 
-void		__construct(t_data *data, char **line)
-{
-	*line = NULL;
-	data->n_ants = 0;
-}
-
-void		read_n_ants(t_data *data, int fd, char **line)
-{
-	char	*tmp;
-
-	get_next_line(fd, line);
-	ft_printf("%s\n", *line);
-
-	tmp = *line;
-	while (ft_isdigit(*tmp))
-		tmp++;
-	if ()
-}
-
-void		read_data(int fd)
-{
-	char	*line;
-	t_data	data;
-
-	__construct(&data, &line);
-	read_n_ants(&data, fd, &line);
-}
-
-
-
 int			main(int ar, char **av)
 {
 	int	fd;

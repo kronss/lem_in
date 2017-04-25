@@ -14,11 +14,11 @@ GCC = gcc
 
 # F = -Wall -Wextra -Werror
 
-NAME = lem_in
+NAME = lem-in
 
 INCL = libft/libft.a ft_printf/libftprintf.a
 
-OBJECT = main.o error_lem_in.o
+OBJECT = main.o error_lem_in.o read_data.o
 
 .PHONY: all clean fclean re bug debug
 
@@ -47,11 +47,10 @@ r: all
 	./$(NAME)
 
 bug:
-	gcc -g $(F) -o $(NAME_1) list_push_back.c ps_error.c print_stacks.c make_ss.c make_rr.c make_rrr.c pre_validate.c \
-	init_var.c read_flags.c operation_push_back.c checker.c reading_commands.c $(INCL)
+	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c $(INCL)
 
 debug: bug
-	lldb -- $(NAME) $(TEST)
+	lldb -- $(NAME)
 
 %.o: ./%.c
 	$(GCC) $(F) -o $@ -c $< -I ./

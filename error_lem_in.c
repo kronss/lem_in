@@ -14,7 +14,7 @@
 
 void		error_lem_in(int i)
 {
-	if (i == -1)
-		ft_printf("file doesn't exist\n");
+	(i == 1) ? ft_printf("file doesn't exist\n") : 0;
+	(i == 2) ? ft_printf("wrong line in N_ANTS\n") : 0;
 	exit(1);
 }
