@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_lem_in.c                                     :+:      :+:    :+:   */
+/*   construct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 11:18:11 by ochayche          #+#    #+#             */
-/*   Updated: 2017/04/21 11:18:12 by ochayche         ###   ########.fr       */
+/*   Created: 2017/04/27 12:13:36 by ochayche          #+#    #+#             */
+/*   Updated: 2017/04/27 12:13:37 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		error_lem_in(int i)
+void		construct(t_data *data)
 {
-	(i == 1) ? ft_printf("file doesn't exist\n") : 0;
-	(i == 2) ? ft_printf("wrong line in N_ANTS\n") : 0;
-	(i == 3) ? ft_printf("unexpected char in this block\n") : 0;
-	(i == 4) ? ft_printf("wrong line in rooms block\n") : 0;
-	exit(1);
+	data->max_ants = 0;
+	data->cmd_node = FALSE;
+	data->create_room_permissions = TRUE;
 }

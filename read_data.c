@@ -12,13 +12,6 @@
 
 #include "lem_in.h"
 
-void		construct(t_data *data)
-{
-	data->max_ants = 0;
-	data->cmd_node = FALSE;
-	data->create_room_permissions = TRUE;
-}
-
 void		read_n_ants(t_data *data, int fd)
 {
 	char	*line;
@@ -36,9 +29,49 @@ void		read_n_ants(t_data *data, int fd)
 	ft_printf("data->max_ants: %d\n", data->max_ants); // verbose
 }
 
-void		read_command(t_data *data, char *line)
+void		ceck_command_node(t_data *data, char *line)
 {
+	if (!ft_strncmp(line, "##start", 7))
+		data->cmd_node = 1;
+	else if (!ft_strncmp(line, "##end", 5))
+		data->cmd_node = 2;
+	ft_printf("data->cmd_node %d\n", data->cmd_node); // verbose
+}
 
+
+int			check_name_room(int c)
+{
+	if ((' ' < c && c < '-') || ('-' < c && c < 127))
+		return (1);
+	return (0);
+}
+
+int			is_it_room(t_data *data, char *line)
+{
+	char	*tmp;
+	int		limit;
+
+	tmp = line;
+	limit = 0;
+	while (check_name_room(*tmp))
+		tmp++;
+	(*tmp != ' ') ? error_lem_in(4) : 0;
+	tmp++;
+	while (ft_isdigit(*tmp) && limit < 12)
+	{
+		tmp++;
+		limit++;
+	}
+	(*tmp != ' ') ? error_lem_in(4) : 0;
+	tmp++;
+	limit = 0;
+	while (ft_isdigit(*tmp) && limit < 12)
+	{
+		tmp++;
+		limit++;
+	}
+	(*tmp != '\0') ? error_lem_in(4) : 0;
+	return (1);
 }
 
 void		read_rooms(t_data *data, int fd)
@@ -48,12 +81,21 @@ void		read_rooms(t_data *data, int fd)
 	line = NULL;
 	while ((get_next_line(fd, &line) > 0))
 	{
-		if (strncmp(line, "#", 1))
-			read_command(data, line);
-			
+		if (!ft_strncmp(line, "L", 1))
+			error_lem_in(3);
+		else if (!ft_strncmp(line, "#", 1))
+		{
+			ceck_command_node(data, line);
+			continue ;
+		}
+		else if (is_it_room(data, line))
+		{
+
+		}
+		ft_printf("%s\n", line); // verbose
+
+
 	}
-
-
 }
 
 void		read_data(int fd)

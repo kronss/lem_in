@@ -28,19 +28,32 @@
 # include "ft_printf/ft_printf.h"
 # include <fcntl.h>
 
-typedef struct	s_data
+typedef struct		s_data
 {
-	int			max_ants;
-	int			cmd_node;
-	int			create_room_permissions;
-
-}				t_data;
+	int				max_ants;
+	int				cmd_node;
+	int				create_room_permissions;
 
 
+}					t_data;
 
-void		error_lem_in(int i);
-void		read_data(int fd);
+typedef struct		s_node
+{
+	char			*name;
+	int				cmd;
+	int				y;
+	int				x;
+	struct s_node	*next;
+}					t_node;
 
+
+
+
+
+
+void				error_lem_in(int i);
+void				read_data(int fd);
+void				construct(t_data *data);
 
 
 

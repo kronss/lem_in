@@ -18,7 +18,7 @@ NAME = lem-in
 
 INCL = libft/libft.a ft_printf/libftprintf.a
 
-OBJECT = main.o error_lem_in.o read_data.o
+OBJECT = main.o error_lem_in.o read_data.o construct.o
 
 .PHONY: all clean fclean re bug debug
 
@@ -44,7 +44,7 @@ fclean: clean
 re: fclean all
 
 r: all
-	./$(NAME)
+	./$(NAME) -f test
 
 bug:
 	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c $(INCL)
