@@ -32,6 +32,8 @@ typedef struct		s_data
 {
 	int				max_ants;
 	int				cmd_node;
+	int				check_start;
+	int				check_end;
 	int				create_room_permissions;
 
 
@@ -54,6 +56,7 @@ typedef struct		s_node
 void				error_lem_in(int i);
 void				read_data(int fd);
 void				construct(t_data *data);
+void		read_n_ants(t_data *data, int fd);
 
 
 

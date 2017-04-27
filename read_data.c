@@ -12,29 +12,38 @@
 
 #include "lem_in.h"
 
-void		read_n_ants(t_data *data, int fd)
+void		read_cmd_room(t_data *data, char **line, int fd)
 {
-	char	*line;
-	char	*tmp;
+	get_next_line(fd, line);
+	
+	if (!ft_strncmp(*line, "##start", 7))
+		error_lem_in(6);
+	else if (!ft_strncmp(*line, "##end", 5))
+		error_lem_in(6);
+	else if (!ft_strncmp(*line, "#", 1))
+		return ;
 
-	line = NULL;
-	get_next_line(fd, &line);
-	ft_printf("read: %s\n", line); // verbose
+}	
 
-	tmp = line;
-	while (ft_isdigit(*tmp))
-		tmp++;
-	if (*tmp != '\0' || !(data->max_ants = ft_atoi(line)))
-		error_lem_in(2);
-	ft_printf("data->max_ants: %d\n", data->max_ants); // verbose
-}
-
-void		ceck_command_node(t_data *data, char *line)
+void		ceck_command_node(t_data *data, char **line, int fd)
 {
-	if (!ft_strncmp(line, "##start", 7))
+	if (!ft_strncmp(*line, "##start", 7))
+	{
 		data->cmd_node = 1;
-	else if (!ft_strncmp(line, "##end", 5))
+		if (!data->check_start)
+			data->check_start = 1;
+		else
+			error_lem_in(6);
+	}
+	else if (!ft_strncmp(*line, "##end", 5))
+	{
 		data->cmd_node = 2;
+		if (!data->check_end)
+			data->check_end = 1;
+		else
+			error_lem_in(6);
+	}
+	read_cmd_room(data, line, fd);
 	ft_printf("data->cmd_node %d\n", data->cmd_node); // verbose
 }
 
@@ -83,12 +92,12 @@ void		read_rooms(t_data *data, int fd)
 	{
 		if (!ft_strncmp(line, "L", 1))
 			error_lem_in(3);
-		else if (!ft_strncmp(line, "#", 1))
+		if (!ft_strncmp(line, "#", 1))
 		{
-			ceck_command_node(data, line);
-			continue ;
+			ceck_command_node(data, &line, fd);
+			// continue ;
 		}
-		else if (is_it_room(data, line))
+		if (is_it_room(data, line))
 		{
 
 		}
