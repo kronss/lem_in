@@ -106,7 +106,7 @@ int							get_next_line(const int fd, char **line)
 	if (!(lst = get_struct(&head, fd)) || fd < 0 || BUFF_SIZE == 0
 		|| line == NULL)
 		return (-1);
-	if (*line)  // *line = NULL;
+	//if (*line)  // *line = NULL;
 		ft_strdel(line); //
 	if ((check(&lst->cut, line)))
 		return (1);

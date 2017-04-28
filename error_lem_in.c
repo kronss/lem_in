@@ -22,5 +22,9 @@ void		error_lem_in(int i)
 	(i == 4) ? ft_printf(E"wrong line in rooms block\n") : 0;
 	(i == 5) ? ft_printf(E"MAX_MIN INT\n") : 0;
 	(i == 6) ? ft_printf(E"double declarede comand ##start or ##end\n") : 0;
+	(i == 7) ? ft_printf(E"expected a room after declarede ##start or ##end\n") : 0;
+
+
+	(i == -1) ? ft_printf(E"malloc doesn't work\n") : 0;	
 	exit(1);
 }

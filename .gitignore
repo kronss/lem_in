@@ -4,3 +4,4 @@
 *.out
 .nfs.*
 lem-in.dSYM
+._*

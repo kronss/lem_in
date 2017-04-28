@@ -28,16 +28,8 @@
 # include "ft_printf/ft_printf.h"
 # include <fcntl.h>
 
-typedef struct		s_data
-{
-	int				max_ants;
-	int				cmd_node;
-	int				check_start;
-	int				check_end;
-	int				create_room_permissions;
+# include <stdio.h> // dell
 
-
-}					t_data;
 
 typedef struct		s_node
 {
@@ -50,14 +42,31 @@ typedef struct		s_node
 
 
 
+typedef struct		s_data
+{
+	char 			*line;
+	int				max_ants;
+	int				cmd_node;
+	int				check_start;
+	int				check_end;
+	int				create_room_permissions;
+
+	t_node			*node;
+}					t_data;
+
+
+
+
+
 
 
 
 void				error_lem_in(int i);
 void				read_data(int fd);
 void				construct(t_data *data);
-void		read_n_ants(t_data *data, int fd);
-
+void				read_n_ants(t_data *data, int fd, char **line);
+int					is_it_room(t_data *data, char *line);
+void				node_push_back(t_data *data, char *line);
 
 
 
