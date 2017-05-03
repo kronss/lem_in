@@ -25,16 +25,19 @@ void		error_lem_in(int i)
 	(i == 7) ? ft_printf(E"expected a room after declarede ##start or ##end\n") : 0;
 	(i == 8) ? ft_printf(E"invalid data\n") : 0;
 	(i == 9) ? ft_printf(E"duplicate was found\n") : 0;
-	(i == 10) ? ft_printf(E"wrong line in link block\n") : 0;
+	
 
 
-
+	/******  link block *******/
+	(i == 10) ? ft_printf(E"invalid data in link block\n") : 0;
 	(i == 11) ? ft_printf(E"inself link\n") : 0;
-	// (i == 12) ? ft_printf(E"\n") : 0;
+	(i == 12) ? ft_printf(E"wrong link name\n") : 0;
+	(i == 13) ? ft_printf(E"duplicate link\n") : 0;
+
+
 
 
 
 	(i == -1) ? ft_printf(E"malloc doesn't work\n") : 0;
-
 	exit(1);
 }

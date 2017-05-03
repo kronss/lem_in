@@ -54,7 +54,7 @@ fclean: clean
 re: fclean all
 
 r: all
-	./$(NAME)
+	./$(NAME) < test
 
 bug:
 	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c $(INCL)

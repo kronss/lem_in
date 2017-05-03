@@ -15,10 +15,6 @@
 void		read_cmd_room(t_data *data, int fd, char **line)
 {
 	get_next_line(fd, line);
-	// if (!ft_strncmp(*line, "##start", 7))
-	// 	error_lem_in(6);
-	// else if (!ft_strncmp(*line, "##end", 5))
-	// 	error_lem_in(6);
 	if (!ft_strncmp(*line, "#", 1))
 		error_lem_in(7);
 	else if (!ft_strncmp(*line, "L", 1))

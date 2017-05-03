@@ -16,25 +16,25 @@ void		make_matrix(t_data *data, int max)
 {
 	int i;
 	int j;
-	int **matrix;
+	// int **matrix;
 
 	j = -1;
-	matrix = data->matrix;
-	matrix = malloc(sizeof(int *) * max);
+	// matrix = data->matrix;
+	data->matrix = malloc(sizeof(int *) * max);
 	while (++j < max)
 	{
-		matrix[j] = malloc(sizeof(int) * max);
+		data->matrix[j] = malloc(sizeof(int) * max);
 		i = -1;
 		while (++i < max)
-			matrix[j][i] = 0;
+			data->matrix[j][i] = 0;
 	}
 
-	// for (int k = 0; k < max; ++k) // verbose
-	// {
-	// 	for (int l = 0; l < max; ++l)
-	// 	{
-	// 		printf(" %d", matrix[k][l]);
-	// 	}
-	// 	printf("\n");
-	// }
+	for (int k = 0; k < max; ++k) // verbose
+	{
+		for (int l = 0; l < max; ++l)
+		{
+			printf(" %d", data->matrix[k][l]);
+		}
+		printf("\n");
+	}
 }
