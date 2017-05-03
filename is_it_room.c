@@ -45,6 +45,6 @@ void			is_it_room(t_data *data, char *line)
 		line++;
 		limit++;
 	}
-	ft_printf("=====%d\n", limit);
+	// ft_printf("=====%d\n", limit);
 	(*line != '\0' || !limit) ? error_lem_in(4) : 0;
 }

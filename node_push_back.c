@@ -26,20 +26,23 @@ void		check_duplicate(t_node *node, char *str)
 	}
 }
 
-
 t_node		*create_node(t_data *data, char *line)
 {
 	t_node	*node;
-	t_node	*tmp;
-
-	tmp = data->node;
+	static int i = 1;
 
 	if (!(node = malloc(sizeof(t_node))))
 		error_lem_in(-1);
 	node->name = ft_strsub(line, 0, ft_chrposn(line, ' '));
-	node->cmd = data->cmd_node;
 	if (data->cmd_node)
+	{
+		node->cmd = data->cmd_node - 1;
 		data->cmd_node = 0;
+	}
+	else
+	{
+		node->cmd = ++i;
+	}
 	node->next = NULL;
 	ft_printf("line---[%s]\n", line);
 	ft_printf("name---[%s]\n", node->name);

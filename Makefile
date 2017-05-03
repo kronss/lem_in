@@ -14,7 +14,7 @@ GCC = gcc
 
 # F = -Wall -Wextra -Werror
 
-NAME = lem-in.exe
+NAME = lem-in
 
 INCL = libft/libft.a ft_printf/libftprintf.a
 
@@ -24,7 +24,11 @@ OBJECT = main.o \
 		construct.o \
 		read_n_ants.o \
 		is_it_room.o \
-		node_push_back.o
+		node_push_back.o \
+		linked_list_len.o \
+		make_matrix.o \
+		read_rooms.o
+
 
 .PHONY: all clean fclean re bug debug
 

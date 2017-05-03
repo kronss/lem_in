@@ -40,6 +40,7 @@ typedef struct		s_node
 {
 	char			*name;
 	int				cmd;
+	int				i;
 	int				y;
 	int				x;
 	struct s_node	*next;
@@ -54,9 +55,11 @@ typedef struct		s_data
 	int				cmd_node;
 	int				check_start;
 	int				check_end;
+
 	int				create_room_permissions;
 
 	t_node			*node;
+	int				**matrix;
 }					t_data;
 
 
@@ -72,8 +75,9 @@ void				construct(t_data *data);
 void				read_n_ants(t_data *data, int fd, char **line);
 void				is_it_room(t_data *data, char *line);
 void				node_push_back(t_data *data, char *line);
-
-
+int					linked_list_len(t_node *tmp);
+void				make_matrix(t_data *data, int max);
+void				read_rooms(t_data *data, int fd, char **line);
 
 
 #endif
