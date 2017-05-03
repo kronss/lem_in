@@ -132,7 +132,7 @@ void		read_connection(t_data *data, int fd, char **line)
 		if ((ft_chrcount(*line, '-') == 1) && !ft_chrcount(*line, ' '))
 		{
 			check_inselflink(*line, ft_strchr(*line, '-') + 1);
-
+			
 			check_name_cnct();
 		}
 		else
