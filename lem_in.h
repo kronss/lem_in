@@ -21,6 +21,11 @@
 **  exit
 */
 
+
+/*
+** norm check
+*/
+
 #ifndef LEM_IN
 # define LEM_IN
 
@@ -65,7 +70,7 @@ void				error_lem_in(int i);
 void				read_data(int fd);
 void				construct(t_data *data);
 void				read_n_ants(t_data *data, int fd, char **line);
-int					is_it_room(t_data *data, char *line);
+void				is_it_room(t_data *data, char *line);
 void				node_push_back(t_data *data, char *line);
 
 

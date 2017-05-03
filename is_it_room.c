@@ -20,30 +20,31 @@ static int			check_name_room(int c)
 	return (0);
 }
 
-int			is_it_room(t_data *data, char *line)
+void			is_it_room(t_data *data, char *line)
 {
 	char	*tmp;
 	int		limit;
 
-	tmp = line;
 	limit = 0;
-	while (check_name_room(*tmp))
-		tmp++;
-	(*tmp != ' ') ? error_lem_in(4) : 0;
-	tmp++;
-	while (ft_isdigit(*tmp) && limit < 12)
+	if (!check_name_room(*line))
+		error_lem_in(4);
+	while (check_name_room(*line))
+		line++;
+	(*line != ' ') ? error_lem_in(4) : 0;
+	line++;
+	while (ft_isdigit(*line) && limit < 12)
 	{
-		tmp++;
+		line++;
 		limit++;
 	}
-	(*tmp != ' ') ? error_lem_in(4) : 0;
-	tmp++;
+	(*line != ' ' || !limit) ? error_lem_in(4) : 0;
+	line++;
 	limit = 0;
-	while (ft_isdigit(*tmp) && limit < 12)
+	while (ft_isdigit(*line) && limit < 12)
 	{
-		tmp++;
+		line++;
 		limit++;
 	}
-	(*tmp != '\0') ? error_lem_in(4) : 0;
-	return (1);
+	ft_printf("=====%d\n", limit);
+	(*line != '\0' || !limit) ? error_lem_in(4) : 0;
 }

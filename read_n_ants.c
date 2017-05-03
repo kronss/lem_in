@@ -14,13 +14,11 @@
 
 void		read_n_ants(t_data *data, int fd, char **line)
 {
-	// char	*line;
 	char	*tmp;
 	int		lim;
 	long	val;
 
 	lim = 1;
-	// line = NULL;
 	get_next_line(fd, line);
 	val = ft_atol(*line);
 	// ft_printf("read: %s\n", *line); // verbose

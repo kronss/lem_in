@@ -12,7 +12,7 @@
 
 GCC = gcc
 
-F = -Wall -Wextra -Werror
+# F = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 

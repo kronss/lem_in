@@ -12,22 +12,27 @@
 
 #include "lem_in.h"
 
-// #include <stdio.h>
-
-int			ft_chrposn(char *str, char c)
+void		check_duplicate(t_node *node, char *str)
 {
-	int	i;
+	t_node	*tmp;
 
-	i = -1;
-	while (str[++i] != '\0')
-		if (str[i] == c)
-			return (i);
-	return (0);
+	tmp = node;
+
+	while (tmp->next)
+	{
+		if (!ft_strcmp(tmp->name, str))
+			error_lem_in(9);
+		tmp = tmp->next;
+	}
 }
+
 
 t_node		*create_node(t_data *data, char *line)
 {
 	t_node	*node;
+	t_node	*tmp;
+
+	tmp = data->node;
 
 	if (!(node = malloc(sizeof(t_node))))
 		error_lem_in(-1);
@@ -43,37 +48,24 @@ t_node		*create_node(t_data *data, char *line)
 	return (node);
 }
 
-
 void		node_push_back(t_data *data, char *line)
 {
 	t_node *tmp;
+
 
 	tmp = data->node;
 	if (tmp)
 	{
 		while (tmp->next)
-			tmp->next = tmp;	
+		{
+			tmp = tmp->next;
+		}		
 		tmp->next = create_node(data, line);
-
+		check_duplicate(data->node, tmp->next->name);
 	}
 	else
 	{
-		tmp = create_node(data, line);
+		data->node = create_node(data, line);
 	}
 
 }
-
-
-// int main(int argc, char const *argv[])
-// {
-// 	char *str = "abcd ef";
-// 	char c = ' ';
-
-
-// 	// char *tmp = ft_strchr(str, c);
-
-
-
-// 	printf("-- %d\n", ft_chrposn(str, c));
-// 	return 0;
-// }

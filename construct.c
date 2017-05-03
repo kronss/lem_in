@@ -16,7 +16,7 @@ void		construct(t_data *data)
 {
 	data->line = NULL;
 	data->max_ants = 0;
-	data->cmd_node = -2;
+	data->cmd_node = 0;
 	data->check_start = 0;
 	data->check_end = 0;
 	data->create_room_permissions = TRUE;

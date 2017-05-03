@@ -14,17 +14,17 @@
 
 int		ft_chrcount(char *str, char c)
 {
-	int counter;
+	int cnt;
 
-	counter = 0;
+	cnt = 0;
 	if (str != '\0')
 	{
 		while (*str != '\0')
 		{
 			if (*str == c)
-				counter++;
+				cnt++;
 			str++;
 		}
 	}
-	return (counter);
+	return (cnt);
 }

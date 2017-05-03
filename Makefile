@@ -14,11 +14,17 @@ GCC = gcc
 
 # F = -Wall -Wextra -Werror
 
-NAME = lem-in
+NAME = lem-in.exe
 
 INCL = libft/libft.a ft_printf/libftprintf.a
 
-OBJECT = main.o error_lem_in.o read_data.o construct.o read_n_ants.o is_it_room.o node_push_back.o
+OBJECT = main.o \
+		error_lem_in.o \
+		read_data.o \
+		construct.o \
+		read_n_ants.o \
+		is_it_room.o \
+		node_push_back.o
 
 .PHONY: all clean fclean re bug debug
 
@@ -44,7 +50,7 @@ fclean: clean
 re: fclean all
 
 r: all
-	./$(NAME) -f test
+	./$(NAME)
 
 bug:
 	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c $(INCL)
