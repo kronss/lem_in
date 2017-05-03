@@ -29,12 +29,12 @@ void		make_matrix(t_data *data, int max)
 			matrix[j][i] = 0;
 	}
 
-	for (int k = 0; k < max; ++k)
-	{
-		for (int l = 0; l < max; ++l)
-		{
-			printf(" %d", matrix[k][l]);
-		}
-		printf("\n");
-	}
+	// for (int k = 0; k < max; ++k) // verbose
+	// {
+	// 	for (int l = 0; l < max; ++l)
+	// 	{
+	// 		printf(" %d", matrix[k][l]);
+	// 	}
+	// 	printf("\n");
+	// }
 }
