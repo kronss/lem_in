@@ -19,15 +19,25 @@ void		read_n_ants(t_data *data, int fd, char **line)
 	long	val;
 
 	lim = 1;
-	get_next_line(fd, line);
-	val = ft_atol(*line);
-	// ft_printf("read: %s\n", *line); // verbose
-	tmp = *line;
-	while (ft_isdigit(*tmp) && lim++ < 11)
-		tmp++;
-	if (*tmp != '\0' || !(data->max_ants = ft_atoi(*line)))
-		error_lem_in(2);
-	if (!(0 < val && val <= 2147483647))
-		error_lem_in(5);
-	// ft_printf("data->max_ants: %d\n", data->max_ants); // verbose
+	while (get_next_line(fd, line) > 0)
+	{
+		if (!ft_strcmp("##start", *line) || !ft_strcmp("##end", *line))
+			error_lem_in (22);
+		else if (!ft_strncmp("#", *line, 1))
+			continue ;
+		else
+		{
+			val = ft_atol(*line);
+			// ft_printf("read: %s\n", *line); // verbose
+			tmp = *line;
+			while (ft_isdigit(*tmp) && lim++ < 11)
+				tmp++;
+			if (*tmp != '\0' || !(data->max_ants = ft_atoi(*line)))
+				error_lem_in(2);
+			if (!(0 < val && val <= 2147483647))
+				error_lem_in(5);
+			// ft_printf("data->max_ants: %d\n", data->max_ants); // verbose
+			break ;
+		}
+	}
 }

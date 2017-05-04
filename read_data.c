@@ -24,10 +24,6 @@ void		check_inselflink(char *line1, char *line2)
 	(*line1 == '-' && *line2 == '\0') ? error_lem_in(11) : 0;
 }
 
-
-
-
-
 void		check_name_a(t_node *tmp, char *line1, int *a)
 {
 	while (tmp)
@@ -43,7 +39,6 @@ void		check_name_a(t_node *tmp, char *line1, int *a)
 		error_lem_in(12);
 }
 
-
 void		check_name_b(t_node *tmp, char *line2, int *b)
 {
 	while (tmp)
@@ -58,7 +53,6 @@ void		check_name_b(t_node *tmp, char *line2, int *b)
 	if (*b < 0)
 		error_lem_in(12);
 }
-
 
 void		check_link(t_data *data, char *line, char *line2)
 {
@@ -124,7 +118,7 @@ void		read_connection(t_data *data, int fd, char **line)
 			printf(" %d", data->matrix[k][l]);
 		}
 		printf("\n");
-	}	
+	}
 }
 
 
