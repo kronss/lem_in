@@ -66,9 +66,9 @@ void		check_link(t_data *data, char *line, char *line2)
 	check_name_a(data->node, line1, &y);
 	ft_strdel(&line1);
 	check_name_b(data->node, line2, &x);
-	printf("a %d\nb %d\n", y, x); // verbose
+	// printf("a %d\nb %d\n", y, x); // verbose
 	
-	printf("data->matrix[y][x] == %d\n", data->matrix[y][x]); // verbose
+	// printf("data->matrix[y][x] == %d\n", data->matrix[y][x]); // verbose
 	if (!data->matrix[y][x] && !data->matrix[x][y])
 	{
 		data->matrix[y][x] = 1;
@@ -80,22 +80,27 @@ void		check_link(t_data *data, char *line, char *line2)
 
 void		read_connection(t_data *data, int fd, char **line)
 {
-	printf("[%s]\n", *line);
+	printf("[%s]\n", *line);  // verbose
+	int max = linked_list_len(data->node); // verbose
 	check_inselflink(*line, ft_strchr(*line, '-') + 1);
 	check_link(data, *line, ft_strchr(*line, '-') + 1);
-	// int max = linked_list_len(data->node); // verbose
-	// for (int k = 0; k < max; ++k) 
-	// {
-	// 	for (int l = 0; l < max; ++l)
-	// 	{
-	// 		printf(" %d", data->matrix[k][l]);
-	// 	}
-	// 	printf("\n");
-	// }
 
+
+
+
+
+	for (int k = 0; k < max; ++k)  // verbose
+		{
+			for (int l = 0; l < max; ++l)
+			{
+				printf(" %d", data->matrix[k][l]);
+			}
+			printf("\n");
+		}	
 
 	while ((get_next_line(fd, line) > 0))
 	{
+		printf("[%s]\n", *line);  // verbose
 		if (!ft_strcmp(*line, "##start") || !ft_strcmp(*line, "##end"))
 			error_lem_in(6);
 		else if (!ft_strncmp(*line, "#", 1))
@@ -107,20 +112,16 @@ void		read_connection(t_data *data, int fd, char **line)
 		}
 		else
 			error_lem_in(10);
-	}
-
-	int max = linked_list_len(data->node); // verbose
-	printf("sizeof %lu\n", sizeof(data->matrix));
-	for (int k = 0; k < max; ++k)
-	{
-		for (int l = 0; l < max; ++l)
-		{
-			printf(" %d", data->matrix[k][l]);
-		}
-		printf("\n");
+		for (int k = 0; k < max; ++k)  // verbose
+			{
+				for (int l = 0; l < max; ++l)
+				{
+					printf(" %d", data->matrix[k][l]);
+				}
+				printf("\n");
+			}
 	}
 }
-
 
 void		read_data(int fd)
 {
