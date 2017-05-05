@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 /*
-** attention!!!
+** !!!ATTENTION!!!
 ** `line` must be initialized to NULL before first call of function
 ** have a nice day!
 */

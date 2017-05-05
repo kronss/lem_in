@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define E  "ERROR: "
+#define E "ERROR: "
 
 #include "lem_in.h"
 
@@ -31,9 +31,9 @@ void		error_lem_in(int i)
 	(i == 7) ? ft_printf(E"expected a room after declarede ##start or ##end\n") : 0;
 	(i == 8) ? ft_printf(E"invalid data\n") : 0;
 	(i == 9) ? ft_printf(E"duplicate was found\n") : 0;
+	(i == 90) ? ft_printf(E"no start_room\n") : 0;
+	(i == 91) ? ft_printf(E"no end_room\n") : 0;
 	
-
-
 	/******  link block *******/
 	(i == 10) ? ft_printf(E"invalid data in link block\n") : 0;
 	(i == 11) ? ft_printf(E"inself link\n") : 0;

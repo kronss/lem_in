@@ -12,6 +12,26 @@
 
 #include "lem_in.h"
 
+void		check_start_end(t_node *node)
+{
+	short n;
+	short m;
+
+	n = 0;
+	m = 0;
+	while (node)
+	{
+		if (node->cmd == 0)
+			n++;
+		if (node->cmd == 1)
+			m++;
+		node = node->next;
+	}
+	n ? 0 : error_lem_in(90);
+	m ? 0 : error_lem_in(91);
+}
+
+
 void		read_cmd_room(t_data *data, int fd, char **line)
 {
 	get_next_line(fd, line);
@@ -32,7 +52,7 @@ void		check_command_node(t_data *data, char **line, int fd)
 {
 	if (!ft_strcmp(*line, "##start"))
 	{
-		data->cmd_node = 1;
+		data->cmd_node = 2;
 		if (!data->check_start)
 			data->check_start = 1;
 		else
@@ -40,7 +60,7 @@ void		check_command_node(t_data *data, char **line, int fd)
 	}
 	else if (!ft_strcmp(*line, "##end"))
 	{
-		data->cmd_node = 2;
+		data->cmd_node = 1;
 		if (!data->check_end)
 			data->check_end = 1;
 		else
@@ -72,4 +92,5 @@ void		read_rooms(t_data *data, int fd, char **line)
 			error_lem_in(8);
 		// ft_printf("%s\n", *line); // verbose
 	}
+	check_start_end(data->node);
 }

@@ -27,7 +27,8 @@ OBJECT = main.o \
 		node_push_back.o \
 		linked_list_len.o \
 		make_matrix.o \
-		read_rooms.o
+		read_rooms.o \
+		read_connection.o
 
 
 .PHONY: all clean fclean re bug debug

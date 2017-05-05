@@ -24,9 +24,9 @@
 
 /*
 ** 
-** comment in 1 block
-
-** norm check
+** 
+** leak
+** norm
 */
 
 #ifndef LEM_IN
@@ -59,7 +59,7 @@ typedef struct		s_data
 	int				check_start;
 	int				check_end;
 
-	int				create_room_permissions;
+	int				create_room_permissions; // dell?
 
 	t_node			*node;
 	int				**matrix;
@@ -81,6 +81,6 @@ void				node_push_back(t_data *data, char *line);
 int					linked_list_len(t_node *tmp);
 void				make_matrix(t_data *data, int max);
 void				read_rooms(t_data *data, int fd, char **line);
-
+void				read_connection(t_data *data, int fd, char **line);
 
 #endif
