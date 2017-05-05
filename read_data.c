@@ -12,44 +12,52 @@
 
 #include "lem_in.h"
 
-void		init_add_data(int *visited, int limit)
-{
-	int i;
 
-	i = -1;
-	while (++i < limit)
-		visited[i] = 0;
+void		dfs(t_data *data, int j, int *visited, int limit)
+{
+	int 	i;
+
+	i = 0;
+	// printf("======recursion======\n"); // verbose
+	// for (int k = 0; k < limit; ++k)  // verbose
+			{
+				for (int l = 0; l < limit; ++l)
+				{
+					printf(" %d", data->matrix[k][l]);
+				}
+				printf("\n");
+			}
+	
+	if (j == 0)
+	{
+
+	}
+
+	while (i < limit)
+	{
+		if (matrix[j][i] == 1)
+		{
+			dfs(data, i, visited, limit);
+		}
+
+
+
+	}
+
+
+
 }
 
-void		find_way(int **matrix, int *visited)
-{
 
 
-	if (visited[0] == 1)
-		return ;
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-void		build_ways(int **matrix, t_node *node, int limit)
+void		build_ways(t_data *data, int **matrix, t_node *node, int limit)
 {
 	int visited[limit];
 
-	init_add_data(visited, limit);
+	ft_bzero(visited, limit * 4);
 	printf("======================build_ways===================\n"); // verbose
 
-	for (int i = 0; i < limit; ++i)
+	for (int i = 0; i < limit; ++i) // verbose 
 		{
 			printf("%d--[%d]\n", i, visited[i]);
 		}
@@ -64,13 +72,10 @@ void		build_ways(int **matrix, t_node *node, int limit)
 
 	
 
-	while (find_way(matrix, visited))
-	{
 
 
-
-
-	}
+	dfs(data, 1, visited, limit);
+	
 
 }
 
