@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char				ft_size_uns_digit(uintmax_t digit)
+static char				ft_size_uns_digit(unsigned long long digit)
 {
 	char				res;
 
@@ -26,7 +26,7 @@ static char				ft_size_uns_digit(uintmax_t digit)
 	return (res);
 }
 
-static char				ft_strlen_uns_digit(t_flist *lst, intmax_t digit)
+static char				ft_strlen_uns_digit(t_flist *lst, long long digit)
 {
 	char				res;
 	char				tmp;
@@ -50,7 +50,7 @@ static char				ft_strlen_uns_digit(t_flist *lst, intmax_t digit)
 	return (res);
 }
 
-static char				ft_print_uns_digit(uintmax_t digit, t_flist *lst)
+static char				ft_print_uns_digit(unsigned long long digit, t_flist *lst)
 {
 	char				len;
 
@@ -67,7 +67,7 @@ static char				ft_print_uns_digit(uintmax_t digit, t_flist *lst)
 	return (len);
 }
 
-static char				ft_hend_uns_digit(t_flist *lst, uintmax_t digit)
+static char				ft_hend_uns_digit(t_flist *lst, unsigned long long digit)
 {
 	short				len;
 
@@ -90,7 +90,7 @@ int						ft_handling_unsigned_digit(t_flist *lst, void *digit)
 	if (lst->spec == 'U')
 		return (ft_hend_uns_digit(lst, (unsigned long)digit));
 	else if (lst->j)
-		return (ft_hend_uns_digit(lst, (uintmax_t)digit));
+		return (ft_hend_uns_digit(lst, (unsigned long long)digit));
 	else if (lst->ll)
 		return (ft_hend_uns_digit(lst, (unsigned long long)digit));
 	else if (lst->z)

@@ -16,34 +16,34 @@
 
 void		error_lem_in(int i)
 {
-	(i == 1) ? ft_printf(E"file doesn't exist\n") : 0;
+	(i == 1) ? printf(E"file doesn't exist\n") : 0;
 	
 	/*****   N ants    ******/
-	(i == 2) ? ft_printf(E"wrong line in N_ANTS\n") : 0;
-	(i == 22) ? ft_printf(E"unexpected command in this block\n") : 0;
+	(i == 2) ? printf(E"wrong line in N_ANTS\n") : 0;
+	(i == 22) ? printf(E"unexpected command in this block\n") : 0;
 
 
 	/****** rooms block *****/
-	(i == 3) ? ft_printf(E"unexpected char in this block\n") : 0;
-	(i == 4) ? ft_printf(E"wrong line in rooms block\n") : 0;
-	(i == 5) ? ft_printf(E"MAX_MIN INT\n") : 0;
-	(i == 6) ? ft_printf(E"double declarede command ##start or ##end\n") : 0;
-	(i == 7) ? ft_printf(E"expected a room after declarede ##start or ##end\n") : 0;
-	(i == 8) ? ft_printf(E"invalid data\n") : 0;
-	(i == 9) ? ft_printf(E"duplicate was found\n") : 0;
-	(i == 90) ? ft_printf(E"no start_room\n") : 0;
-	(i == 91) ? ft_printf(E"no end_room\n") : 0;
+	(i == 3) ? printf(E"unexpected char in this block\n") : 0;
+	(i == 4) ? printf(E"wrong line in rooms block\n") : 0;
+	(i == 5) ? printf(E"MAX_MIN INT\n") : 0;
+	(i == 6) ? printf(E"double declarede command ##start or ##end\n") : 0;
+	(i == 7) ? printf(E"expected a room after declarede ##start or ##end\n") : 0;
+	(i == 8) ? printf(E"invalid data\n") : 0;
+	(i == 9) ? printf(E"duplicate was found\n") : 0;
+	(i == 90) ? printf(E"no start_room\n") : 0;
+	(i == 91) ? printf(E"no end_room\n") : 0;
 	
 	/******  link block *******/
-	(i == 10) ? ft_printf(E"invalid data in link block\n") : 0;
-	(i == 11) ? ft_printf(E"inself link\n") : 0;
-	(i == 12) ? ft_printf(E"wrong link name\n") : 0;
-	(i == 13) ? ft_printf(E"duplicate link\n") : 0;
+	(i == 10) ? printf(E"invalid data in link block\n") : 0;
+	(i == 11) ? printf(E"inself link\n") : 0;
+	(i == 12) ? printf(E"wrong link name\n") : 0;
+	(i == 13) ? printf(E"duplicate link\n") : 0;
 
 
 
 
 
-	(i == -1) ? ft_printf(E"malloc doesn't work\n") : 0;
+	(i == -1) ? printf(E"malloc doesn't work\n") : 0;
 	exit(1);
 }

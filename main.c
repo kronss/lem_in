@@ -14,7 +14,7 @@
 
 static void	usage(void)
 {
-	ft_printf("usage: ./lem_in [-f file]\n");
+	printf("usage: ./lem_in [-f file]\n");
 	exit(1);
 }
 

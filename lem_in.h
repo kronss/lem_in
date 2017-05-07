@@ -39,6 +39,8 @@
 # include <stdio.h> // dell
 
 
+
+/*********** rooms *************/
 typedef struct		s_node
 {
 	char			*name;
@@ -50,6 +52,26 @@ typedef struct		s_node
 }					t_node;
 
 
+/************ dynamic roots ussing in recurcion ********/
+typedef struct		s_root
+{
+	int				id;
+	struct s_root	*next;
+}					t_root;
+
+
+
+/************* keep way in id array ************/
+typedef struct		s_ways
+{
+	int				n;
+	int				max;
+	int				*road;
+	struct s_ways	*next;
+}					t_ways;
+
+
+
 
 typedef struct		s_data
 {
@@ -58,10 +80,15 @@ typedef struct		s_data
 	int				cmd_node;
 	int				check_start;
 	int				check_end;
+	int				max;
+
 
 	int				create_room_permissions; // dell?
 
 	t_node			*node;
+	t_root			*root;
+	t_ways			*ways;
+
 	int				**matrix;
 }					t_data;
 
@@ -75,12 +102,17 @@ typedef struct		s_data
 void				error_lem_in(int i);
 void				read_data(int fd);
 void				construct(t_data *data);
+void				destruct(t_data *data);
 void				read_n_ants(t_data *data, int fd, char **line);
 void				is_it_room(t_data *data, char *line);
 void				node_push_back(t_data *data, char *line);
+void				root_push_back(t_data *data, int id);
+void				root_pop(t_data *data);
 int					linked_list_len(t_node *tmp);
+int					root_listlen(t_root *tmp);
 void				make_matrix(t_data *data, int max);
 void				read_rooms(t_data *data, int fd, char **line);
 void				read_connection(t_data *data, int fd, char **line);
+
 
 #endif

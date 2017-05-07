@@ -29,7 +29,7 @@ void		read_n_ants(t_data *data, int fd, char **line)
 		else
 		{
 			val = ft_atol(*line);
-			ft_printf("read: %s\n", *line); // verbose
+			printf("read: %s\n", *line); // verbose
 			tmp = *line;
 			while (ft_isdigit(*tmp) && lim++ < 11)
 				tmp++;
@@ -37,7 +37,7 @@ void		read_n_ants(t_data *data, int fd, char **line)
 				error_lem_in(2);
 			if (!(0 < val && val <= 2147483647))
 				error_lem_in(5);
-			ft_printf("data->max_ants: %d\n", data->max_ants); // verbose
+			printf("data->max_ants: %d\n", data->max_ants); // verbose
 			break ;
 		}
 	}

@@ -17,7 +17,7 @@
 
 #include "ft_printf.h"
 
-static char				ft_size_digit(intmax_t digit)
+static char				ft_size_digit(long long digit)
 {
 	char				res;
 
@@ -31,7 +31,7 @@ static char				ft_size_digit(intmax_t digit)
 	return (res);
 }
 
-static char				ft_strlen_digit(t_flist *lst, intmax_t digit)
+static char				ft_strlen_digit(t_flist *lst, long long digit)
 {
 	char				res;
 	char				tmp;
@@ -58,7 +58,7 @@ static char				ft_strlen_digit(t_flist *lst, intmax_t digit)
 	return (res);
 }
 
-static char				ft_print_digit(intmax_t digit, t_flist *lst)
+static char				ft_print_digit(long long digit, t_flist *lst)
 {
 	char len;
 
@@ -75,7 +75,7 @@ static char				ft_print_digit(intmax_t digit, t_flist *lst)
 	return (len);
 }
 
-static short			ft_hend_digit(t_flist *lst, intmax_t digit, int *len)
+static short			ft_hend_digit(t_flist *lst, long long digit, int *len)
 {
 	if ((lst->flags)[2] == '0' && lst->precision == -1)
 		(lst->flags)[0] = '0';
@@ -110,7 +110,7 @@ int						ft_handling_digit(t_flist *lst, void *digit)
 	if (lst->spec == 'D')
 		(ft_hend_digit(lst, (long)digit, &len));
 	else if (lst->j)
-		(ft_hend_digit(lst, (intmax_t)digit, &len));
+		(ft_hend_digit(lst, (long long)digit, &len));
 	else if (lst->ll)
 		(ft_hend_digit(lst, (long long)digit, &len));
 	else if (lst->z)

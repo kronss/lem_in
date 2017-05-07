@@ -24,9 +24,7 @@ void		make_matrix(t_data *data, int max)
 	while (++j < max)
 	{
 		data->matrix[j] = malloc(sizeof(int) * max);
-		i = -1;
-		while (++i < max)
-			data->matrix[j][i] = 0;
+		ft_bzero(data->matrix[j], max * 4);
 	}
 
 	for (int k = 0; k < max; ++k) // verbose

@@ -12,6 +12,19 @@
 
 #include "lem_in.h"
 
+int				root_listlen(t_root *tmp)
+{
+	int i;
+
+	i = 0;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
 int				linked_list_len(t_node *tmp)
 {
 	int i;

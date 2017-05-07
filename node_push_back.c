@@ -44,10 +44,10 @@ t_node		*create_node(t_data *data, char *line)
 		node->cmd = ++i;
 	}
 	node->next = NULL;
-	ft_printf("line---[%s]\n", line);
-	ft_printf("name---[%s]\n", node->name);
-	ft_printf("cmd----[%d]\n", node->cmd);
-	ft_printf("----\n");
+	// ft_printf("line---[%s]\n", line);
+	// ft_printf("name---[%s]\n", node->name);
+	// ft_printf("cmd----[%d]\n", node->cmd);
+	// ft_printf("----\n");
 	return (node);
 }
 
