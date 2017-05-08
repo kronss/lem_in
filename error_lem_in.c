@@ -14,7 +14,7 @@
 
 #include "lem_in.h"
 
-void		error_lem_in(int i)
+void		error_lem_in(int i, t_data *data)
 {
 	(i == 1) ? printf(E"file doesn't exist\n") : 0;
 	
@@ -44,6 +44,11 @@ void		error_lem_in(int i)
 
 
 
+
+	(i == 14) ? printf("ERROR\n") : 0;
+
+
 	(i == -1) ? printf(E"malloc doesn't work\n") : 0;
+	__destruct(data);
 	exit(1);
 }

@@ -21,7 +21,8 @@ INCL = libft/libft.a ft_printf/libftprintf.a
 OBJECT = main.o \
 		error_lem_in.o \
 		read_data.o \
-		construct.o \
+		__construct.o \
+		__destruct.o \
 		read_n_ants.o \
 		is_it_room.o \
 		node_push_back.o \
@@ -29,7 +30,8 @@ OBJECT = main.o \
 		make_matrix.o \
 		read_rooms.o \
 		read_connection.o \
-		root_push_back.o
+		root_push_back.o \
+		build_ways.o
 
 
 .PHONY: all clean fclean re bug debug
@@ -59,10 +61,10 @@ r: all
 	./$(NAME) < test2
 
 bug:
-	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c construct.c read_n_ants.c is_it_room.c node_push_back.c linked_list_len.c make_matrix.c read_rooms.c read_connection.c root_push_back.c libft/libft.a ft_printf/libftprintf.a $(INCL)
+	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c __construct.c  __destruct.c read_n_ants.c is_it_room.c node_push_back.c linked_list_len.c make_matrix.c read_rooms.c read_connection.c root_push_back.c libft/libft.a ft_printf/libftprintf.a $(INCL)
 
 debug: bug
-	lldb -- $(NAME)
+	lldb -- $(NAME) -f test2
 
 %.o: ./%.c
 	$(GCC) $(F) -o $@ -c $< -I ./

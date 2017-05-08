@@ -32,7 +32,7 @@ int			main(int ar, char **av)
 		if (!strcmp("-f", av[1]))
 		{
 			if ((fd = open(av[2], O_RDONLY)) == -1)
-				error_lem_in(1);
+				error_lem_in(1, NULL);
 			else
 				read_data(fd);
 		}

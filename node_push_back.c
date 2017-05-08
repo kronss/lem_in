@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void		check_duplicate(t_node *node, char *str)
+void		check_duplicate(t_data *data, t_node *node, char *str)
 {
 	t_node	*tmp;
 
@@ -21,7 +21,7 @@ void		check_duplicate(t_node *node, char *str)
 	while (tmp->next)
 	{
 		if (!ft_strcmp(tmp->name, str))
-			error_lem_in(9);
+			error_lem_in(9, data);
 		tmp = tmp->next;
 	}
 }
@@ -32,7 +32,7 @@ t_node		*create_node(t_data *data, char *line)
 	static int i = 1;
 
 	if (!(node = malloc(sizeof(t_node))))
-		error_lem_in(-1);
+		error_lem_in(-1, data);
 	node->name = ft_strsub(line, 0, ft_chrposn(line, ' '));
 	if (data->cmd_node)
 	{
@@ -64,7 +64,7 @@ void		node_push_back(t_data *data, char *line)
 			tmp = tmp->next;
 		}		
 		tmp->next = create_node(data, line);
-		check_duplicate(data->node, tmp->next->name);
+		check_duplicate(data, data->node, tmp->next->name);
 	}
 	else
 	{

@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_matrix.c                                      :+:      :+:    :+:   */
+/*   __construct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 13:10:00 by ochayche          #+#    #+#             */
-/*   Updated: 2017/05/03 13:10:01 by ochayche         ###   ########.fr       */
+/*   Created: 2017/04/27 12:13:36 by ochayche          #+#    #+#             */
+/*   Updated: 2017/04/27 12:13:37 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		make_matrix(t_data *data, int max)
+
+
+
+void		__construct(t_data *data)
 {
-	int i;
-	int j;
-	// int **matrix;
+	data->line = NULL;
+	data->max_ants = 0;
+	data->cmd_node = 0;
+	data->check_start = 0;
+	data->check_end = 0;
+	data->max = 0;
+	
 
-	j = -1;
-	// matrix = data->matrix;
-	data->matrix = malloc(sizeof(int *) * max);
-	while (++j < max)
-	{
-		data->matrix[j] = malloc(sizeof(int) * max);
-		ft_bzero(data->matrix[j], max * sizeof(int));
-	}
+	data->matrix = NULL;
 
-	for (int k = 0; k < max; ++k) // verbose
-	{
-		for (int l = 0; l < max; ++l)
-		{
-			printf(" %d", data->matrix[k][l]);
-		}
-		printf("\n");
-	}
+	data->node = NULL;
+	data->root = NULL;
+	data->ways = NULL;
+
 }

@@ -27,17 +27,17 @@ void			is_it_room(t_data *data, char *line)
 
 	limit = 0;
 	if (!check_name_room(*line))
-		error_lem_in(4);
+		error_lem_in(4, data);
 	while (check_name_room(*line))
 		line++;
-	(*line != ' ') ? error_lem_in(4) : 0;
+	(*line != ' ') ? error_lem_in(4, data) : 0;
 	line++;
 	while (ft_isdigit(*line) && limit < 12)
 	{
 		line++;
 		limit++;
 	}
-	(*line != ' ' || !limit) ? error_lem_in(4) : 0;
+	(*line != ' ' || !limit) ? error_lem_in(4, data) : 0;
 	line++;
 	limit = 0;
 	while (ft_isdigit(*line) && limit < 12)
@@ -46,5 +46,5 @@ void			is_it_room(t_data *data, char *line)
 		limit++;
 	}
 	// ft_printf("=====%d\n", limit);
-	(*line != '\0' || !limit) ? error_lem_in(4) : 0;
+	(*line != '\0' || !limit) ? error_lem_in(4, data) : 0;
 }

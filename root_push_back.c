@@ -19,13 +19,13 @@ void		root_pop(t_data *data)
 
 
 	tmp2 = data->root;
-	printf("id :");
-	while (tmp2)
-	{
-		printf("-%d", tmp2->id);
-		tmp2 = tmp2->next;
-	}
-	printf("\n");
+	// printf("id :"); // verbose
+	// while (tmp2) // verbose
+	// {
+	// 	printf("-%d", tmp2->id);
+	// 	tmp2 = tmp2->next;
+	// }
+	// printf("\n");
 	tmp = data->root;
 	// printf("--%p\n", data->root); // verbose
 	if (data->root)
@@ -45,12 +45,12 @@ void		root_pop(t_data *data)
 
 
 
-t_root		*create_root(id)
+t_root		*create_root(t_data *data, int id)
 {
 	t_root	*root;
 
 	if (!(root = malloc(sizeof(t_root))))
-		error_lem_in(-1);
+		error_lem_in(-1, data);
 	root->id = id;
 
 	root->next = NULL;
@@ -71,11 +71,11 @@ void		root_push_back(t_data *data, int id)
 		{
 			tmp = tmp->next;
 		}		
-		tmp->next = create_root(id);
+		tmp->next = create_root(data, id);
 	}
 	else
 	{
-		data->root = create_root(id);
+		data->root = create_root(data, id);
 	}
 	// printf("--%p\n", data->root); // verbose
 

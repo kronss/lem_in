@@ -1,17 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   construct.c                                        :+:      :+:    :+:   */
+/*   __destruct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 12:13:36 by ochayche          #+#    #+#             */
-/*   Updated: 2017/04/27 12:13:37 by ochayche         ###   ########.fr       */
+/*   Created: 2017/05/08 11:12:54 by ochayche          #+#    #+#             */
+/*   Updated: 2017/05/08 11:12:55 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "lem_in.h"
-
 
 void		del_node(t_node **head)
 {
@@ -67,12 +65,7 @@ void		del_ways(t_ways **head)
 	}
 }
 
-
-
-
-
-
-void		destruct(t_data *data)
+void		__destruct(t_data *data)
 {
 	int j;
 	int i;
@@ -88,7 +81,7 @@ void		destruct(t_data *data)
 	// data->create_room_permissions = TRUE; //
 	del_node(&data->node);
 
-	// del_root(&data->root);
+	del_root(&data->root);
 	
 
 	while (j < data->max && data->matrix)
@@ -105,30 +98,4 @@ void		destruct(t_data *data)
 	// data->node = NULL;
 	// data->root = NULL;
 	// data->ways = NULL;
-}
-
-
-
-
-
-
-
-
-
-
-
-void		construct(t_data *data)
-{
-	data->line = NULL;
-	data->max_ants = 0;
-	data->cmd_node = 0;
-	data->check_start = 0;
-	data->check_end = 0;
-	data->max = 0;
-
-	data->create_room_permissions = TRUE; //
-	data->node = NULL;
-	data->root = NULL;
-	data->ways = NULL;
-	data->matrix = NULL;
 }

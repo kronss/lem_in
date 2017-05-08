@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void		check_start_end(t_node *node)
+void		check_start_end(t_data *data, t_node *node)
 {
 	short n;
 	short m;
@@ -27,8 +27,8 @@ void		check_start_end(t_node *node)
 			m++;
 		node = node->next;
 	}
-	n ? 0 : error_lem_in(90);
-	m ? 0 : error_lem_in(91);
+	n ? 0 : error_lem_in(90, data);
+	m ? 0 : error_lem_in(91, data);
 }
 
 
@@ -36,16 +36,16 @@ void		read_cmd_room(t_data *data, int fd, char **line)
 {
 	get_next_line(fd, line);
 	if (!ft_strncmp(*line, "#", 1))
-		error_lem_in(7);
+		error_lem_in(7, data);
 	else if (!ft_strncmp(*line, "L", 1))
-		error_lem_in(3);
+		error_lem_in(3, data);
 	else if ((ft_chrcount(*line, ' ') == 2) && !ft_chrcount(*line, '-'))
 	{
 		is_it_room(data, *line);
 		node_push_back(data, *line);
 	}
 	else
-		error_lem_in(7);
+		error_lem_in(7, data);
 }
 
 void		check_command_node(t_data *data, char **line, int fd)
@@ -56,7 +56,7 @@ void		check_command_node(t_data *data, char **line, int fd)
 		if (!data->check_start)
 			data->check_start = 1;
 		else
-			error_lem_in(6);
+			error_lem_in(6, data);
 	}
 	else if (!ft_strcmp(*line, "##end"))
 	{
@@ -64,7 +64,7 @@ void		check_command_node(t_data *data, char **line, int fd)
 		if (!data->check_end)
 			data->check_end = 1;
 		else
-			error_lem_in(6);
+			error_lem_in(6, data);
 	}
 	else
 		return ;
@@ -76,7 +76,7 @@ void		read_rooms(t_data *data, int fd, char **line)
 	while ((get_next_line(fd, line) > 0))
 	{
 		if (!ft_strncmp(*line, "L", 1))
-			error_lem_in(3);
+			error_lem_in(3, data);
 		else if (!ft_strncmp(*line, "#", 1))
 		{
 			check_command_node(data, line, fd);
@@ -89,8 +89,8 @@ void		read_rooms(t_data *data, int fd, char **line)
 			node_push_back(data, *line);
 		}
 		else
-			error_lem_in(8);
+			error_lem_in(8, data);
 		// ft_printf("%s\n", *line); // verbose
 	}
-	check_start_end(data->node);
+	check_start_end(data, data->node);
 }

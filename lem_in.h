@@ -64,10 +64,12 @@ typedef struct		s_root
 /************* keep way in id array ************/
 typedef struct		s_ways
 {
-	int				n;
+	int				id;
+	int 			use;
 	int				max;
 	int				*road;
 	struct s_ways	*next;
+	// struct s_ways	*prev;
 }					t_ways;
 
 
@@ -83,7 +85,6 @@ typedef struct		s_data
 	int				max;
 
 
-	int				create_room_permissions; // dell?
 
 	t_node			*node;
 	t_root			*root;
@@ -99,10 +100,10 @@ typedef struct		s_data
 
 
 
-void				error_lem_in(int i);
+void				error_lem_in(int i, t_data *data);
 void				read_data(int fd);
-void				construct(t_data *data);
-void				destruct(t_data *data);
+void				__construct(t_data *data);
+void				__destruct(t_data *data);
 void				read_n_ants(t_data *data, int fd, char **line);
 void				is_it_room(t_data *data, char *line);
 void				node_push_back(t_data *data, char *line);
@@ -113,6 +114,6 @@ int					root_listlen(t_root *tmp);
 void				make_matrix(t_data *data, int max);
 void				read_rooms(t_data *data, int fd, char **line);
 void				read_connection(t_data *data, int fd, char **line);
-
+void				build_ways(t_data *data, int **matrix, t_node *node, int limit);
 
 #endif
