@@ -20,7 +20,7 @@ t_ways		*make_way(t_data *data, t_root *root, int max) //, t_ways *prev)
 
 	if (!(new = malloc(sizeof(t_ways))))
 		error_lem_in(-1, data);
-	if (!(new->road = ft_memalloc(max * 4)))
+	if (!(new->road = ft_memalloc(max * sizeof(int))))
 		error_lem_in(-1, data);
 	i = 0;
 	new->id = ++n;

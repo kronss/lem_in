@@ -23,6 +23,7 @@ void		__construct(t_data *data)
 	data->check_start = 0;
 	data->check_end = 0;
 	data->max = 0;
+	data->max_find_ways = 0;
 	
 
 	data->matrix = NULL;
@@ -30,5 +31,5 @@ void		__construct(t_data *data)
 	data->node = NULL;
 	data->root = NULL;
 	data->ways = NULL;
-
+	data->set_ways = NULL;
 }

@@ -100,7 +100,7 @@ void		read_connection(t_data *data, int fd, char **line)
 
 	while ((get_next_line(fd, line) > 0))
 	{
-		// printf("[%s]\n", *line);  // verbose
+		printf("[%s]\n", *line);  // verbose
 		if (!ft_strcmp(*line, "##start") || !ft_strcmp(*line, "##end"))
 			error_lem_in(6, data);
 		else if (!ft_strncmp(*line, "#", 1))
@@ -112,14 +112,14 @@ void		read_connection(t_data *data, int fd, char **line)
 		}
 		else
 			error_lem_in(10, data);
-		// for (int k = 0; k < max; ++k)  // verbose
-		// 	{
-		// 		for (int l = 0; l < max; ++l)
-		// 		{
-		// 			printf(" %d", data->matrix[k][l]);
-		// 		}
-		// 		printf("\n");
-		// 	}
+		for (int k = 0; k < max; ++k)  // verbose
+			{
+				for (int l = 0; l < max; ++l)
+				{
+					printf(" %d", data->matrix[k][l]);
+				}
+				printf("\n");
+			}
 	}
 	ft_strdel(line);
 }

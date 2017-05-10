@@ -38,26 +38,28 @@
 
 # include <stdio.h> // dell
 
-
-
 /*********** rooms *************/
 typedef struct		s_node
 {
 	char			*name;
 	int				cmd;
-	int				i;
+	int				id;
 	int				y;
 	int				x;
 	struct s_node	*next;
 }					t_node;
 
 
-/************ dynamic roots ussing in recurcion ********/
+/************ dynamic roots useing in recurcion ********/
+/************ using only in building ways step *********/
 typedef struct		s_root
 {
 	int				id;
 	struct s_root	*next;
 }					t_root;
+
+
+
 
 
 
@@ -69,11 +71,19 @@ typedef struct		s_ways
 	int				max;
 	int				*road;
 	struct s_ways	*next;
-	// struct s_ways	*prev;
 }					t_ways;
 
 
 
+
+
+/***************** set of roads ****************** */
+// typedef struct		s_set
+// {
+	
+
+
+// }					t_set;
 
 typedef struct		s_data
 {
@@ -83,13 +93,15 @@ typedef struct		s_data
 	int				check_start;
 	int				check_end;
 	int				max;
-
-
+	int				max_find_ways;
+	
 
 	t_node			*node;
 	t_root			*root;
 	t_ways			*ways;
+	t_ways			*set_ways;
 
+	
 	int				**matrix;
 }					t_data;
 
@@ -116,4 +128,5 @@ void				read_rooms(t_data *data, int fd, char **line);
 void				read_connection(t_data *data, int fd, char **line);
 void				build_ways(t_data *data, int **matrix, t_node *node, int limit);
 void				sort_ways(t_data *data, t_ways **head);
+void				choose_roads(t_data *data, t_ways *ways, int max);
 #endif
