@@ -31,7 +31,8 @@ OBJECT = main.o \
 		read_rooms.o \
 		read_connection.o \
 		root_push_back.o \
-		build_ways.o
+		build_ways.o \
+		sort_ways.o
 
 
 .PHONY: all clean fclean re bug debug

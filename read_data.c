@@ -12,75 +12,8 @@
 
 #include "lem_in.h"
 
-
-
-
-
-void		swap_list(t_ways *cur1, t_ways *cur2)
-{
-	int tmp_max;
-	int *tmp_road;
-
-	tmp_max = cur2->max;
-	tmp_road = cur2->road;
-	cur2->max = cur1->max;
-	cur2->road = cur1->road;
-	cur1->max = tmp_max;
-	cur1->road = tmp_road;
-}
-
-
-void		sort_ways(t_data *data, t_ways **head)
-{
-	t_ways *cur1;
-	t_ways *cur2;
-
-	cur1 = *head;
-
-	while (cur1)
-	{
-		cur2 = cur1->next;
-		while (cur2)
-		{
-			if (cur1->max > cur2->max)
-			{
-				swap_list(cur1, cur2);
-			}
-			cur2 = cur2->next;
-		}
-		cur1 = cur1->next;
-	}
-
-
-	int n = 0;  /* verbose */
-	t_ways *tmp;
-	tmp = data->ways;
-	printf("\n");
-	while (tmp)
-	{
-		// printf("way # %d   ", tmp->n);
-		n = 0;
-
-		while (n < tmp->max)
-		{
-			printf("-[%d]-",tmp->road[n]);
-			n++;
-		}
-		printf("\n");
-		tmp = tmp->next;
-	}
-}
-
-
-
-
-
-
-
 void		find_roads(t_data *data, t_ways *ways, int *visited, int *road)
 {
-
-/********************************* hear **********************/
 	int		max;
 	int i;
 
@@ -100,7 +33,6 @@ void		find_roads(t_data *data, t_ways *ways, int *visited, int *road)
 
 		ways = ways->next;
 	}	
-
 /********************************* hear **********************/
 
 
@@ -123,15 +55,11 @@ void		find_roads(t_data *data, t_ways *ways, int *visited, int *road)
 
 	// 	ways = ways->next;
 	// }
-
-
-
 }
 
 void		choose_roads(t_data *data, t_ways *ways, int max)
 {
 	int visited[max];
-
 
 
 
@@ -147,15 +75,17 @@ void		choose_roads(t_data *data, t_ways *ways, int max)
 	// }
 
 
-	
-
-
-
-
-
-
 }
 
+
+void		build_data(t_data *data, int **matrix, t_node *node, int max)
+{
+	build_ways(data, matrix, node, max);
+	sort_ways(data, &data->ways);
+
+
+	choose_roads(data, data->ways, max);
+}
 
 void		read_data(int fd)
 {
@@ -167,46 +97,6 @@ void		read_data(int fd)
 	data.max = linked_list_len(data.node);
 	make_matrix(&data, data.max);
 	read_connection(&data, fd, &data.line);
-	build_ways(&data, data.matrix, data.node, data.max);
-	sort_ways(&data, &data.ways);
-
-	choose_roads(&data, data.ways, data.max);
-
-
-
-
-
-
+	build_data(&data, data.matrix, data.node, data.max);
 	__destruct(&data);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

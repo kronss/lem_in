@@ -115,5 +115,5 @@ void				make_matrix(t_data *data, int max);
 void				read_rooms(t_data *data, int fd, char **line);
 void				read_connection(t_data *data, int fd, char **line);
 void				build_ways(t_data *data, int **matrix, t_node *node, int limit);
-
+void				sort_ways(t_data *data, t_ways **head);
 #endif
