@@ -18,9 +18,35 @@ void		build_data_ways(t_data *data, int **matrix, t_node *node, int max)
 {
 	build_ways(data, matrix, node, max);
 	sort_ways(data, &data->ways);
-
-
 	choose_roads(data, data->ways, max);
+
+
+	
+
+	
+
+
+
+
+
+
+/************************* verbose *****************************/
+	int lim, j, i = 0;
+	t_set *tmp;
+	while (i < data->max_find_ways)
+	{
+		tmp = &data->set[i];
+		lim = tmp->max;
+		j = 0;
+		printf("road [%d] => ", i);
+		while (j < lim)
+		{
+			printf("-[%d]-", tmp->road[j]);
+			j++;
+		}
+		printf("\n");
+		++i;
+	}
 }
 
 void		read_data(int fd)

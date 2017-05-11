@@ -54,30 +54,33 @@ int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
 void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 {
 	int i;
-	t_ways *tmp;
-
+	t_set *tmp;
+	
 	printf("====================================== create_set ==========================\n");
 	i = 0;
-	printf("adress %p\n", data->set_ways);
-	if (data->set_ways)
+	if (data->set)
 	{
 		printf("delllllllllll =========================\n");
-		ft_memdel((void **)data->set_ways);
+		ft_memdel((void **)&data->set);
 	}
 
 	bzero(visited, sizeof(int) * data->max);
-	if (!(data->set_ways = malloc(sizeof(t_ways *) * res)))
+	if (!(data->set = malloc(sizeof(t_set) * res)))
 		error_lem_in(-1, data);
 	while (ways)
 	{
 		if (note_visited_rooms(data, ways, visited, ways->road))
 		{
-			tmp = &data->set_ways[i];
-			data->set_ways[i] = *(t_ways *)memmove(tmp, ways, sizeof(t_ways));
+			tmp = &data->set[i];
+			tmp->id = ways->id;
+			tmp->max = ways->max;
+			tmp->road = ways->road;
+
 			++i;
 		}
 		ways = ways->next;
 	}
+
 }
 
 
@@ -96,10 +99,6 @@ int			find_roads(t_data *data, t_ways *ways, int *visited)
 	return (res);
 }
 
-
-
-
-
 void		choose_roads(t_data *data, t_ways *ways, int max)
 {
 	int visited[max];
@@ -112,8 +111,6 @@ void		choose_roads(t_data *data, t_ways *ways, int max)
 		
 		if (res > data->max_find_ways)
 		{	
-			printf("find ways: %d\n", res);
-			printf("adress %p\n", data->set_ways);
 			create_set(data, ways, visited, res);// make bigger;
 			data->max_find_ways = res;
 		}

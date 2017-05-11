@@ -31,5 +31,5 @@ void		__construct(t_data *data)
 	data->node = NULL;
 	data->root = NULL;
 	data->ways = NULL;
-	data->set_ways = NULL;
+	data->set = NULL;
 }

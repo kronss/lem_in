@@ -25,7 +25,7 @@
 /*
 ** 
 ** 
-** leak
+** leaks
 ** norm
 */
 
@@ -78,12 +78,15 @@ typedef struct		s_ways
 
 
 /***************** set of roads ****************** */
-// typedef struct		s_set
-// {
-	
+typedef struct		s_set
+{
+	int				id;
+	int 			use;
+	int				max;
+	int				*road;
 
 
-// }					t_set;
+}					t_set;
 
 typedef struct		s_data
 {
@@ -99,7 +102,7 @@ typedef struct		s_data
 	t_node			*node;
 	t_root			*root;
 	t_ways			*ways;
-	t_ways			*set_ways;
+	t_set			*set;
 
 	
 	int				**matrix;
