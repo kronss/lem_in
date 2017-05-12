@@ -21,9 +21,9 @@ void		check_start_end(t_data *data, t_node *node)
 	m = 0;
 	while (node)
 	{
-		if (node->cmd == 0)
+		if (node->id == 0)
 			n++;
-		if (node->cmd == 1)
+		if (node->id == 1)
 			m++;
 		node = node->next;
 	}

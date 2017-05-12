@@ -65,7 +65,7 @@ void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 	}
 
 	bzero(visited, sizeof(int) * data->max);
-	if (!(data->set = malloc(sizeof(t_set) * res)))
+	if (!(data->set = malloc(sizeof(t_set) * res + 1)))
 		error_lem_in(-1, data);
 	while (ways)
 	{
@@ -75,12 +75,11 @@ void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 			tmp->id = ways->id;
 			tmp->max = ways->max;
 			tmp->road = ways->road;
-
+			tmp->ants = (int *)ft_memalloc(ways->max * sizeof(int));
 			++i;
 		}
 		ways = ways->next;
 	}
-
 }
 
 

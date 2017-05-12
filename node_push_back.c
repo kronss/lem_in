@@ -36,12 +36,12 @@ t_node		*create_node(t_data *data, char *line)
 	node->name = ft_strsub(line, 0, ft_chrposn(line, ' '));
 	if (data->cmd_node)
 	{
-		node->cmd = data->cmd_node - 1;
+		node->id = data->cmd_node - 1;
 		data->cmd_node = 0;
 	}
 	else
 	{
-		node->cmd = ++i;
+		node->id = ++i;
 	}
 	node->next = NULL;
 	// ft_printf("line---[%s]\n", line);

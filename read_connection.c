@@ -30,7 +30,7 @@ void		check_name_a(t_data *data, t_node *tmp, char *line1, int *a)
 	{
 		if (!ft_strcmp(line1, tmp->name))
 		{
-			*a = tmp->cmd;
+			*a = tmp->id;
 			return ;
 		}
 		tmp = tmp->next;
@@ -45,7 +45,7 @@ void		check_name_b(t_data *data, t_node *tmp, char *line2, int *b)
 	{
 		if (!ft_strcmp(line2, tmp->name))
 		{
-			*b = tmp->cmd;
+			*b = tmp->id;
 			return ;
 		}
 		tmp = tmp->next;

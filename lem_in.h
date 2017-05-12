@@ -24,7 +24,7 @@
 
 /*
 ** 
-** 
+** test1 - segfoult
 ** leaks
 ** norm
 */
@@ -42,7 +42,7 @@
 typedef struct		s_node
 {
 	char			*name;
-	int				cmd;
+	// int				cmd;
 	int				id;
 	int				y;
 	int				x;
@@ -84,7 +84,7 @@ typedef struct		s_set
 	int 			use;
 	int				max;
 	int				*road;
-
+	int				*ants;
 
 }					t_set;
 
