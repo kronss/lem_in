@@ -29,10 +29,10 @@ void		push_ants(t_data *data, t_set *set, int *n_ant, int max_ants)
 	set[i].ants[1] = *n_ant;
 	(*n_ant)++;
 	i++;
-	while ((i < max_ways) && ((set[i].max - set[0].max) + (i - 1)) < (max_ants - *n_ant))  //
-	{
-	// while ((i < max_ways) && ((set[i - 1].max < (max_ants - *n_ant))))
+	// while ((i < max_ways) && ((set[i].max - set[0].max) + (i - 1)) < (max_ants - *n_ant))  //
 	// {
+	while ((i < max_ways) && ((set[i - 1].max < (max_ants - *n_ant))))
+	{
 		node = data->node;
 		while (node && (set[i].road[1] != node->id))
 			node = node->next;
@@ -70,6 +70,35 @@ void		push_ants(t_data *data, t_set *set, int *n_ant, int max_ants)
 
 
 
+void		move_ants(t_data *data, t_set *set)
+{
+	t_node *node;
+	int max_ways;
+	int max;
+	int i;
+	int *road;
+
+	i = 0;
+	max_ways = data->max_ways;
+	while (i < max_ways)
+	{
+		cur = set->max - 2; // set a position of cur_ant between (start_room + 1) < and (end_room)
+		road = set->road;
+		while (0 < cur && cur < (set->max - 1) ) //&& set[i].road[cur] != 0)
+		{	
+			road[cur + 1] = road[cur];
+			road[cur] = 0;
+			////
+			node = data->node;
+			while (node && (set[i].road[cur + 1] != node->id))
+				node = node->next;
+			printf("L%d-%s ", road[cur + 1], );
+			--cur;
+		}
+		++i;
+	}
+}
+
 void 		go_ants(t_data *data, int max_ants)
 {
 	int n_ant;
@@ -77,10 +106,13 @@ void 		go_ants(t_data *data, int max_ants)
 	n_ant = 1;
 	while (n_ant <= max_ants)
 	{
-		// move_ants ////////////////////////////////////// ???
+		move_ants(data, data->set);
 
 		push_ants(data, data->set, &n_ant, max_ants);
 		printf("\n");
+
+
+		
 	}
 }
 
@@ -119,11 +151,7 @@ void		build_data_ways(t_data *data, int **matrix, t_node *node, int max)
 /***************************************************************/	
 
 	go_ants(data, data->max_ants);
-
 }
-
-
-
 
 void		read_data(int fd)
 {
