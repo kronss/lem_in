@@ -46,24 +46,21 @@ int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
 	// }
 	// printf("===out from perebor===\n");
 /******************************************************************************/
-	
 	return (1);
-
 }
 
 void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 {
 	int i;
 	t_set *tmp;
-	
+
 	printf("====================================== create_set ==========================\n");
 	i = 0;
-	if (data->set)
+	if (data->set) // && check_max_steps(data)) //////////////////------------------------dick
 	{
 		printf("delllllllllll =========================\n");
 		ft_memdel((void **)&data->set);
 	}
-
 	bzero(visited, sizeof(int) * data->max);
 	if (!(data->set = malloc(sizeof(t_set) * res + 1)))
 		error_lem_in(-1, data);
@@ -77,9 +74,12 @@ void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 			tmp->road = ways->road;
 			tmp->ants = (int *)ft_memalloc(ways->max * sizeof(int));
 			++i;
+			data->max_moves += ways->max;
 		}
 		ways = ways->next;
 	}
+	data->max_find_ways = res;
+	data->max_moves = (data->max_ants + (data->max_moves - res)) / res;  ////
 }
 
 
@@ -108,10 +108,10 @@ void		choose_roads(t_data *data, t_ways *ways, int max)
 		bzero(visited, sizeof(int) * max);
 		res = find_roads(data, ways, visited);
 		
-		if (res > data->max_find_ways)
-		{	
+		if (res > data->max_find_ways)  ///////////////////////////////////////////////////////////////////
+		{
 			create_set(data, ways, visited, res);// make bigger;
-			data->max_find_ways = res;
+			
 		}
 
 /********************************* verbose ***********************************/

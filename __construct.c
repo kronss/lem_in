@@ -24,6 +24,7 @@ void		__construct(t_data *data)
 	data->check_end = 0;
 	data->max = 0;
 	data->max_find_ways = 0;
+	data->max_moves = 0;
 	
 
 	data->matrix = NULL;

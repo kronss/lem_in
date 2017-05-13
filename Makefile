@@ -33,7 +33,8 @@ OBJECT = main.o \
 		root_push_back.o \
 		build_ways.o \
 		sort_ways.o \
-		choose_roads.o
+		choose_roads.o \
+		go_ants.o
 
 
 .PHONY: all clean fclean re bug debug
@@ -60,11 +61,11 @@ fclean: clean
 re: fclean all
 
 r: all
-	./$(NAME) < test2
+	./$(NAME) < test7
 
 bug:
 	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c __construct.c  __destruct.c read_n_ants.c is_it_room.c node_push_back.c \
-	linked_list_len.c make_matrix.c read_rooms.c read_connection.c root_push_back.c build_ways.c sort_ways.c choose_roads.c libft/libft.a ft_printf/libftprintf.a $(INCL)
+	linked_list_len.c make_matrix.c read_rooms.c read_connection.c root_push_back.c build_ways.c sort_ways.c choose_roads.c go_ants.c libft/libft.a ft_printf/libftprintf.a $(INCL)
 
 debug: bug
 	lldb -- $(NAME) -f test2

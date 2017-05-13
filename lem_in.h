@@ -97,6 +97,7 @@ typedef struct		s_data
 	int				check_end;
 	int				max;
 	int				max_find_ways;
+	int				max_moves;
 	
 
 	t_node			*node;
@@ -132,4 +133,23 @@ void				read_connection(t_data *data, int fd, char **line);
 void				build_ways(t_data *data, int **matrix, t_node *node, int limit);
 void				sort_ways(t_data *data, t_ways **head);
 void				choose_roads(t_data *data, t_ways *ways, int max);
+void		 		go_ants(t_data *data, int max_ants);
+
+
+
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
