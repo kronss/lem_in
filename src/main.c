@@ -20,8 +20,7 @@ static void	usage(void)
 
 int			main(int ar, char **av)
 {
-	int	fd;
-
+	int		fd;
 
 	if (ar == 1)
 	{
@@ -35,6 +34,8 @@ int			main(int ar, char **av)
 				error_lem_in(1, NULL);
 			else
 				read_data(fd);
+			if (close(fd) == -1)
+				error_lem_in(1, NULL);
 		}
 		else
 			usage();

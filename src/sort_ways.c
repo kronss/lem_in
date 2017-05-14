@@ -12,11 +12,10 @@
 
 #include "../lem_in.h"
 
-
-void		swap_list(t_ways *cur1, t_ways *cur2)
+static void		swap_list(t_ways *cur1, t_ways *cur2)
 {
-	int tmp_max;
-	int *tmp_road;
+	int			tmp_max;
+	int			*tmp_road;
 
 	tmp_max = cur2->max;
 	tmp_road = cur2->road;
@@ -26,14 +25,12 @@ void		swap_list(t_ways *cur1, t_ways *cur2)
 	cur1->road = tmp_road;
 }
 
-
-void		sort_ways(t_data *data, t_ways **head)
+void			sort_ways(t_ways **head)
 {
-	t_ways *cur1;
-	t_ways *cur2;
+	t_ways		*cur1;
+	t_ways		*cur2;
 
 	cur1 = *head;
-
 	while (cur1)
 	{
 		cur2 = cur1->next;
@@ -46,23 +43,5 @@ void		sort_ways(t_data *data, t_ways **head)
 			cur2 = cur2->next;
 		}
 		cur1 = cur1->next;
-	}
-/************************** verbose *************************/
-	int n = 0;  /* verbose */
-	t_ways *tmp;
-	tmp = data->ways;
-	printf("\n");
-	while (tmp)
-	{
-		// printf("way # %d   ", tmp->n);
-		n = 0;
-
-		while (n < tmp->max)
-		{
-			printf("-[%d]-",tmp->road[n]);
-			n++;
-		}
-		printf("\n");
-		tmp = tmp->next;
 	}
 }

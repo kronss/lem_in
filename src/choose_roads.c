@@ -12,7 +12,7 @@
 
 #include "../lem_in.h"
 
-int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
+static int		note_visited_rooms(t_ways *ways, int *visited, int *road)
 {
 	int			max;
 	int			i;
@@ -22,13 +22,11 @@ int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
 	max = ways->max;
 	while (i < max)
 	{
-
 		n = road[i];
-		// printf("node is == %d\n", n);
 		if (n != 0 && n != 1 && visited[n] == 1)
 		{
 			return (0);
-		}	
+		}
 		++i;
 	}
 	i = 0;
@@ -37,56 +35,37 @@ int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
 		visited[road[i]] = 1;
 		++i;
 	}
-/********************************* verbose ***********************************/
-	// i = 0;
-	// while (i < data->max)
-	// {
-	// 	printf("%d - [%d]\n", i, visited[i]);
-	// 	++i;
-	// }
-	// printf("===out from perebor===\n");
-/******************************************************************************/
 	return (1);
 }
 
-int			check_max_steps(t_data *data, t_ways *ways, int *visited, int res)
+static int		check_max_steps(t_data *data, t_ways *ways, int *vis, int res)
 {
-	int tmp;
-	int control;
+	int			tmp;
+	int			control;
 
 	tmp = 0;
-	bzero(visited, sizeof(int) * data->max);
+	bzero(vis, sizeof(int) * data->max);
 	while (ways)
 	{
-		if (note_visited_rooms(data, ways, visited, ways->road))
+		if (note_visited_rooms(ways, vis, ways->road))
 		{
 			tmp += ways->max;
 		}
 		ways = ways->next;
 	}
-
-
 	control = (data->max_ants + (tmp - res)) / res;
 	if (control >= data->max_moves)
 		return (1);
-	// data->max_find_ways = res;
-	// data->max_moves = (data->max_ants + (data->max_moves - res)) / res;
 	return (0);
 }
 
-
-
-
-void		create_set(t_data *data, t_ways *ways, int *visited, int res)
+static void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 {
-	int i;
-	t_set *tmp;
+	int			i;
 
-	printf("====================================== create_set ==========================\n");
-	i = 0;
-	if (data->set) // && check_max_steps(data)) //////////////////------------------------dick
+	i = -1;
+	if (data->set)
 	{
-		printf("delllllllllll =========================\n");
 		if (check_max_steps(data, ways, visited, res))
 			return ;
 		del_set(&data->set, data->max_find_ways);
@@ -96,79 +75,45 @@ void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 		error_lem_in(-1, data);
 	while (ways)
 	{
-		if (note_visited_rooms(data, ways, visited, ways->road))
+		if (note_visited_rooms(ways, visited, ways->road))
 		{
-			tmp = &data->set[i];
-			tmp->id = ways->id;
-			tmp->max = ways->max;
-			tmp->road = ways->road;
-			tmp->ants = (int *)ft_memalloc(ways->max * sizeof(int));
-			++i;
+			add_set(&data->set[++i], ways);
 			data->max_moves += ways->max;
 		}
 		ways = ways->next;
 	}
 	data->max_find_ways = res;
-	data->max_moves = (data->max_ants + (data->max_moves - res)) / res;  ////
+	data->max_moves = (data->max_ants + (data->max_moves - res)) / res;
 }
 
-
-int			find_roads(t_data *data, t_ways *ways, int *visited)
+static int		find_roads(t_ways *ways, int *visited)
 {
-	int		max;
-	int		res;
+	int			max;
+	int			res;
 
 	res = 0;
 	while (ways)
 	{
 		max = ways->max;
-		res += note_visited_rooms(data, ways, visited, ways->road);
+		res += note_visited_rooms(ways, visited, ways->road);
 		ways = ways->next;
 	}
 	return (res);
 }
 
-void		choose_roads(t_data *data, t_ways *ways, int max)
+void			choose_roads(t_data *data, t_ways *ways, int max)
 {
-	int visited[max];
-	int res;
-	
+	int			visited[max];
+	int			res;
+
 	while (ways)
 	{
 		bzero(visited, sizeof(int) * max);
-		res = find_roads(data, ways, visited);
-		
+		res = find_roads(ways, visited);
 		if (res > data->max_find_ways)
 		{
 			create_set(data, ways, visited, res);
 		}
-
-/********************************* verbose ***********************************/
-	static int n = -1;
-	int i;
-	i = 0;
-	printf(" %d  variant done  ================> next way\n", ++n);
-	while (i < data->max)
-	{
-		printf("%d - [%d]\n", i, visited[i]);
-		i++;
-	}
-	printf("======\n");
-/******************************************************************************/
 		ways = ways->next;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

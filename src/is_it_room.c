@@ -12,8 +12,7 @@
 
 #include "../lem_in.h"
 
-
-static int			check_name_room(int c)
+static int		check_name_room(int c)
 {
 	if ((' ' < c && c < '-') || ('-' < c && c < 127))
 		return (1);
@@ -22,8 +21,7 @@ static int			check_name_room(int c)
 
 void			is_it_room(t_data *data, char *line)
 {
-	char	*tmp;
-	int		limit;
+	int			limit;
 
 	limit = 0;
 	if (!check_name_room(*line))
@@ -45,6 +43,5 @@ void			is_it_room(t_data *data, char *line)
 		line++;
 		limit++;
 	}
-	// ft_printf("=====%d\n", limit);
 	(*line != '\0' || !limit) ? error_lem_in(4, data) : 0;
 }

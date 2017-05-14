@@ -12,12 +12,11 @@
 
 #include "../lem_in.h"
 
-void		check_duplicate(t_data *data, t_node *node, char *str)
+static void		check_duplicate(t_data *data, t_node *node, char *str)
 {
-	t_node	*tmp;
+	t_node		*tmp;
 
 	tmp = node;
-
 	while (tmp->next)
 	{
 		if (!ft_strcmp(tmp->name, str))
@@ -26,10 +25,10 @@ void		check_duplicate(t_data *data, t_node *node, char *str)
 	}
 }
 
-t_node		*create_node(t_data *data, char *line)
+static t_node	*create_node(t_data *data, char *line)
 {
-	t_node	*node;
-	static int i = 1;
+	t_node		*node;
+	static int	i = 1;
 
 	if (!(node = malloc(sizeof(t_node))))
 		error_lem_in(-1, data);
@@ -44,17 +43,12 @@ t_node		*create_node(t_data *data, char *line)
 		node->id = ++i;
 	}
 	node->next = NULL;
-	// ft_printf("line---[%s]\n", line);
-	// ft_printf("name---[%s]\n", node->name);
-	// ft_printf("cmd----[%d]\n", node->cmd);
-	// ft_printf("----\n");
 	return (node);
 }
 
-void		node_push_back(t_data *data, char *line)
+void			node_push_back(t_data *data, char *line)
 {
-	t_node *tmp;
-
+	t_node		*tmp;
 
 	tmp = data->node;
 	if (tmp)
@@ -62,7 +56,7 @@ void		node_push_back(t_data *data, char *line)
 		while (tmp->next)
 		{
 			tmp = tmp->next;
-		}		
+		}
 		tmp->next = create_node(data, line);
 		check_duplicate(data, data->node, tmp->next->name);
 	}
@@ -70,5 +64,4 @@ void		node_push_back(t_data *data, char *line)
 	{
 		data->node = create_node(data, line);
 	}
-
 }
