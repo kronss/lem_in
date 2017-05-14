@@ -49,6 +49,28 @@ int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
 	return (1);
 }
 
+int			check_max_steps(t_data *data, t_ways *ways, int *visited, int res)
+{
+	int tmp;
+
+	tmp = 0;
+	bzero(visited, sizeof(int) * data->max);
+	while (ways)
+	{
+		if (note_visited_rooms(data, ways, visited, ways->road))
+		{
+			tmp += ways->max;
+		}
+		ways = ways->next;
+	}
+	data->max_find_ways = res;
+	data->max_moves = (data->max_ants + (data->max_moves - res)) / res;
+
+}
+
+
+
+
 void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 {
 	int i;
@@ -59,6 +81,8 @@ void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 	if (data->set) // && check_max_steps(data)) //////////////////------------------------dick
 	{
 		printf("delllllllllll =========================\n");
+		if (check_max_steps(data, ways, visited, res))
+			return ;
 		ft_memdel((void **)&data->set);
 	}
 	bzero(visited, sizeof(int) * data->max);
