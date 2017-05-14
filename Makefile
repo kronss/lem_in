@@ -27,8 +27,8 @@ PTF_PATH = ft_printf
 SRC_NAME =	main.c \
 			error_lem_in.c \
 			read_data.c \
-			__construct.c \
-			__destruct.c \
+			construct.c \
+			destruct.c \
 			read_n_ants.c \
 			is_it_room.c \
 			node_push_back.c \
@@ -40,6 +40,7 @@ SRC_NAME =	main.c \
 			build_ways.c \
 			sort_ways.c \
 			choose_roads.c \
+			add_set.c \
 			go_ants.c
 
 INC_NAME = lem_in.h
@@ -58,10 +59,10 @@ $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(FLAGS) $(OBJ) $(LIB_PATH)/$(LIB) $(PTF_PATH)/$(PTF)
 
 $(LIB):
-	make -C $(LIB_PATH)/
+	@make -C $(LIB_PATH)/
 
 $(PTF):
-	make -C $(PTF_PATH)/
+	@make -C $(PTF_PATH)/
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -79,11 +80,11 @@ fclean: clean
 
 re: fclean all
 
-r:
+r: all
 	./$(NAME) < test7
 
 bug:
 	$(CC) -g $(FLAGS) -o $(NAME) $(SRC) $(LIB_PATH)/$(LIB) $(PTF_PATH)/$(PTF)
 
 debug: bug
-	lldb -- $(NAME) -f test7
+	lldb -- $(NAME) -f test02

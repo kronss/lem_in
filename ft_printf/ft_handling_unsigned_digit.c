@@ -50,7 +50,7 @@ static char				ft_strlen_uns_digit(t_flist *lst, long long digit)
 	return (res);
 }
 
-static char				ft_print_uns_digit(unsigned long long digit, t_flist *lst)
+static char				ft_print_uns_digit(uintmax_t digit, t_flist *lst)
 {
 	char				len;
 
@@ -67,7 +67,7 @@ static char				ft_print_uns_digit(unsigned long long digit, t_flist *lst)
 	return (len);
 }
 
-static char				ft_hend_uns_digit(t_flist *lst, unsigned long long digit)
+static char				ft_hend_uns_digit(t_flist *lst, uintmax_t digit)
 {
 	short				len;
 
