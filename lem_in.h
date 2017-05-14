@@ -24,7 +24,6 @@
 
 /*
 ** 
-** test1 - segfoult
 ** leaks
 ** norm
 */
@@ -119,6 +118,7 @@ typedef struct		s_data
 void				error_lem_in(int i, t_data *data);
 void				read_data(int fd);
 void				__construct(t_data *data);
+void				del_set(t_set **head, int lim);
 void				__destruct(t_data *data);
 void				read_n_ants(t_data *data, int fd, char **line);
 void				is_it_room(t_data *data, char *line);

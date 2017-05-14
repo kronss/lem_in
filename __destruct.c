@@ -15,15 +15,9 @@ void		del_node(t_node **head)
 {
 	if (*head)
 	{
-		// printf("%p\n", (*head));   //verbose
-		// printf("%p\n", &(*head)->name);  //verbose
-
  		del_node(&(*head)->next);
 		ft_strdel(&(*head)->name);
 		ft_memdel((void **)head);
-		// printf("-------\n");  //verbose
-		// printf("%p\n", (*head));  //verbose
-		// printf("%p\n", &(*head)->name);  //verbose
 	}
 }
 
@@ -31,12 +25,8 @@ void		del_root(t_root **head)
 {
 	if (*head)
 	{
-		// printf("%p\n", (*head));   //verbose
  		del_root(&(*head)->next);
 		ft_memdel((void **)head);
-		// printf("-------\n");  //verbose
-		// printf("%p\n", (*head));  //verbose
-		// printf("%p\n", &(*head)->name);  //verbose
 	}
 }
 
@@ -44,15 +34,27 @@ void		del_ways(t_ways **head)
 {
 	if (*head)
 	{
-		// printf("%p\n", (*head));   //verbose
-		// printf("%p\n", &(*head)->name);  //verbose
  		del_ways(&(*head)->next);
 		ft_memdel((void **)&(*head)->road);
 		ft_memdel((void **)head);
-		// printf("-------\n");  //verbose
-		// printf("%p\n", (*head));  //verbose
-		// printf("%p\n", &(*head)->name);  //verbose
 	}
+}
+
+void		del_set(t_set **head, int lim)
+{
+	t_set *tmp;
+	int i;
+
+	i = 0;
+	tmp = *head;
+
+	while (i < lim)
+	{
+		ft_memdel((void **)&tmp[i].ants);
+		// ft_memdel((void **)tmp[i].road);
+		++i;
+	}
+	ft_memdel((void **)head);
 }
 
 void		__destruct(t_data *data)
@@ -80,6 +82,7 @@ void		__destruct(t_data *data)
 	}
 	ft_memdel((void **)&data->matrix);
 	del_ways(&data->ways);
+	del_set(&data->set, data->max_find_ways);
 	// data->node = NULL;
 	// data->root = NULL;
 	// data->ways = NULL;

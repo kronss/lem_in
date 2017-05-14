@@ -29,8 +29,8 @@ void		push_ants(t_data *data, t_set *set, int *n_ant, int max_ants)
 		node = node->next;
 	printf("L%d-%s ", *n_ant, node->name);
 	set[i].ants[1] = *n_ant;
-	(*n_ant)++;
-	i++;
+	++(*n_ant);
+	++i;
 	while ((i < max_ways) && ((set[i].max - set[0].max) + (i - 1)) < (max_ants - *n_ant))  //
 	{
 	// while ((i < max_ways) && ((set[i - 1].max < (max_ants - *n_ant))))
@@ -41,7 +41,7 @@ void		push_ants(t_data *data, t_set *set, int *n_ant, int max_ants)
 		printf("L%d-%s ", *n_ant, node->name);
 		set[i].ants[1] = *n_ant;
 		(*n_ant)++;
-		i++;
+		++i;
 	}
 
 }

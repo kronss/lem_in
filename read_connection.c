@@ -14,7 +14,7 @@
 
 void		check_inselflink(t_data *data, char *line1, char *line2)
 {
-	while (*line1 != '-' && *line2 != '\0')
+	while ( *line1 != '-' && *line2 != '\0')
 	{
 		if (*line1 != *line2)
 			return ;
@@ -79,10 +79,14 @@ void		check_link(t_data *data, char *line, char *line2)
 }
 
 void		read_connection(t_data *data, int fd, char **line)
-{
-	printf("[%s]\n", *line);  // verbose
+{	
+	printf("[%s]\n", *line);
+
 	int max = linked_list_len(data->node); // verbose
-	check_inselflink(data, *line, ft_strchr(*line, '-') + 1);
+
+	if (**line)
+		check_inselflink(data, *line, ft_strchr(*line, '-') + 1);
+
 	check_link(data, *line, ft_strchr(*line, '-') + 1);
 
 

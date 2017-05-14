@@ -41,4 +41,5 @@ void		read_n_ants(t_data *data, int fd, char **line)
 			break ;
 		}
 	}
+
 }

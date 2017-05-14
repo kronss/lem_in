@@ -41,6 +41,5 @@ int			main(int ar, char **av)
 	}
 	else
 		usage();
-	// while (1);
 	return (0);
 }

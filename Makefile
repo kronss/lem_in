@@ -68,7 +68,7 @@ bug:
 	linked_list_len.c make_matrix.c read_rooms.c read_connection.c root_push_back.c build_ways.c sort_ways.c choose_roads.c go_ants.c libft/libft.a ft_printf/libftprintf.a $(INCL)
 
 debug: bug
-	lldb -- $(NAME) -f test2
+	lldb -- $(NAME) -f test7
 
 %.o: ./%.c
 	$(GCC) $(F) -o $@ -c $< -I ./

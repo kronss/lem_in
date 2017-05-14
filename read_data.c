@@ -17,32 +17,6 @@ void		build_data_ways(t_data *data, int **matrix, t_node *node, int max)
 	build_ways(data, matrix, node, max);
 	sort_ways(data, &data->ways);
 	choose_roads(data, data->ways, max);
-// /************************* verbose *****************************/
-// 	int lim, j, i = 0;
-// 	t_set *tmp;
-// 	while (i < data->max_find_ways)
-// 	{
-// 		tmp = &data->set[i];
-// 		lim = tmp->max;
-// 		j = 0;
-// 		printf("road [%d] => ", i);
-// 		while (j < lim)
-// 		{
-// 			printf("-[%d]-", tmp->road[j]);
-// 			j++;
-// 		}
-// 		printf("\n            ");
-// 		j = 0;
-// 		while (j < lim)
-// 		{
-// 			printf("-[%d]-", tmp->ants[j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		++i;
-// 	}
-// /***************************************************************/	
-
 	go_ants(data, data->max_ants);
 }
 
@@ -52,11 +26,13 @@ void		read_data(int fd)
 
 	__construct(&data);
 	read_n_ants(&data, fd, &data.line);
+	data.max_ants <= 0 ? error_lem_in(2, &data) : 0;
 	read_rooms(&data, fd, &data.line);
 	data.max = linked_list_len(data.node);
 	make_matrix(&data, data.max);
-	t_node *tmp;
-	tmp = data.node;
+
+	// t_node *tmp;
+	// tmp = data.node;
 	// while (tmp)
 	// {
 	// 	printf("%s\n", tmp->name);
