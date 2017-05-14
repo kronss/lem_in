@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   __construct.c                                      :+:      :+:    :+:   */
+/*   linked_list_len.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 12:13:36 by ochayche          #+#    #+#             */
-/*   Updated: 2017/04/27 12:13:37 by ochayche         ###   ########.fr       */
+/*   Created: 2017/05/03 10:28:26 by ochayche          #+#    #+#             */
+/*   Updated: 2017/05/03 10:28:27 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
-
-
-
-void		__construct(t_data *data)
+int				root_listlen(t_root *tmp)
 {
-	data->line = NULL;
-	data->max_ants = 0;
-	data->cmd_node = 0;
-	data->check_start = 0;
-	data->check_end = 0;
-	data->max = 0;
-	data->max_find_ways = 0;
-	data->max_moves = 0;
-	
+	int i;
 
-	data->matrix = NULL;
+	i = 0;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
 
-	data->node = NULL;
-	data->root = NULL;
-	data->ways = NULL;
-	data->set = NULL;
+int				linked_list_len(t_node *tmp)
+{
+	int i;
+
+	i = 0;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }

@@ -1,39 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_list_len.c                                  :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 10:28:26 by ochayche          #+#    #+#             */
-/*   Updated: 2017/05/03 10:28:27 by ochayche         ###   ########.fr       */
+/*   Created: 2017/04/19 21:57:08 by ochayche          #+#    #+#             */
+/*   Updated: 2017/05/05 11:51:07 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
-int				root_listlen(t_root *tmp)
+static void	usage(void)
 {
-	int i;
-
-	i = 0;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
+	printf("usage: ./lem_in [-f file]\n");
+	exit(1);
 }
 
-int				linked_list_len(t_node *tmp)
+int			main(int ar, char **av)
 {
-	int i;
+	int	fd;
 
-	i = 0;
-	while (tmp)
+
+	if (ar == 1)
 	{
-		i++;
-		tmp = tmp->next;
+		read_data(STDIN);
 	}
-	return (i);
+	else if (ar == 3)
+	{
+		if (!strcmp("-f", av[1]))
+		{
+			if ((fd = open(av[2], O_RDONLY)) == -1)
+				error_lem_in(1, NULL);
+			else
+				read_data(fd);
+		}
+		else
+			usage();
+	}
+	else
+		usage();
+	return (0);
 }

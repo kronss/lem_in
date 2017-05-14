@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
 void		build_data_ways(t_data *data, int **matrix, t_node *node, int max)
 {

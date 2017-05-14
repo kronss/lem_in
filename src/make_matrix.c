@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   make_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/19 21:57:08 by ochayche          #+#    #+#             */
-/*   Updated: 2017/05/05 11:51:07 by ochayche         ###   ########.fr       */
+/*   Created: 2017/05/03 13:10:00 by ochayche          #+#    #+#             */
+/*   Updated: 2017/05/03 13:10:01 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
-static void	usage(void)
+void		make_matrix(t_data *data, int max)
 {
-	printf("usage: ./lem_in [-f file]\n");
-	exit(1);
-}
+	int i;
+	int j;
+	// int **matrix;
 
-int			main(int ar, char **av)
-{
-	int	fd;
-
-
-	if (ar == 1)
+	j = -1;
+	// matrix = data->matrix;
+	data->matrix = malloc(sizeof(int *) * max);
+	while (++j < max)
 	{
-		read_data(STDIN);
+		data->matrix[j] = malloc(sizeof(int) * max);
+		ft_bzero(data->matrix[j], max * sizeof(int));
 	}
-	else if (ar == 3)
+
+	for (int k = 0; k < max; ++k) // verbose
 	{
-		if (!strcmp("-f", av[1]))
+		for (int l = 0; l < max; ++l)
 		{
-			if ((fd = open(av[2], O_RDONLY)) == -1)
-				error_lem_in(1, NULL);
-			else
-				read_data(fd);
+			printf(" %d", data->matrix[k][l]);
 		}
-		else
-			usage();
+		printf("\n");
 	}
-	else
-		usage();
-	return (0);
 }

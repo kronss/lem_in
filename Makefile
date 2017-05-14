@@ -10,65 +10,80 @@
 #                                                                              #
 #******************************************************************************#
 
-GCC = gcc
+.PHONY: all clean fclean re
 
-# F = -Wall -Wextra -Werror
+CC = gcc
+
+FLAGS = -Wall -Wextra -Werror
 
 NAME = lem-in
 
-INCL = libft/libft.a ft_printf/libftprintf.a
+SRC_PATH = src
+INC_PATH = .
+OBJ_PATH = .
+LIB_PATH = libft
+PTF_PATH = ft_printf
 
-OBJECT = main.o \
-		error_lem_in.o \
-		read_data.o \
-		__construct.o \
-		__destruct.o \
-		read_n_ants.o \
-		is_it_room.o \
-		node_push_back.o \
-		linked_list_len.o \
-		make_matrix.o \
-		read_rooms.o \
-		read_connection.o \
-		root_push_back.o \
-		build_ways.o \
-		sort_ways.o \
-		choose_roads.o \
-		go_ants.o
+SRC_NAME =	main.c \
+			error_lem_in.c \
+			read_data.c \
+			__construct.c \
+			__destruct.c \
+			read_n_ants.c \
+			is_it_room.c \
+			node_push_back.c \
+			linked_list_len.c \
+			make_matrix.c \
+			read_rooms.c \
+			read_connection.c \
+			root_push_back.c \
+			build_ways.c \
+			sort_ways.c \
+			choose_roads.c \
+			go_ants.c
 
+INC_NAME = lem_in.h
 
-.PHONY: all clean fclean re bug debug
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
-all: $(NAME)
-	@make -C libft/
-	@make -C ft_printf/
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+LIB = 	libft.a
+PTF =	libftprintf.a
 
-$(NAME): $(OBJECT)
-		@make -C libft/
-		@make -C ft_printf/
-		$(GCC) $(F) -o $(NAME) $(OBJECT) $(INCL)
+all: $(LIB) $(PTF) $(NAME)
+	
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(FLAGS) $(OBJ) $(LIB_PATH)/$(LIB) $(PTF_PATH)/$(PTF)
+
+$(LIB):
+	make -C $(LIB_PATH)/
+
+$(PTF):
+	make -C $(PTF_PATH)/
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC)
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(FLAGS) -o $@ -c $<
 
 clean:
-	@make clean -C libft/
-	@make clean -C ft_printf/
-	rm -rf $(OBJECT)
+	rm -rf $(OBJ)
+	make -C $(LIB_PATH)/ clean
+	make -C $(PTF_PATH)/ clean
 
 fclean: clean
-	@make fclean -C libft/
-	@make fclean -C ft_printf/
-	@rm -rf $(NAME) a.out
+	rm -rf $(NAME)
+	rm -rf $(LIB_PATH)/$(LIB)
+	rm -rf $(PTF_PATH)/$(PTF)
 
 re: fclean all
 
-r: all
+r:
 	./$(NAME) < test7
 
 bug:
-	gcc -g $(F) -o $(NAME) main.c error_lem_in.c read_data.c __construct.c  __destruct.c read_n_ants.c is_it_room.c node_push_back.c \
-	linked_list_len.c make_matrix.c read_rooms.c read_connection.c root_push_back.c build_ways.c sort_ways.c choose_roads.c go_ants.c libft/libft.a ft_printf/libftprintf.a $(INCL)
+	$(CC) -g $(FLAGS) -o $(NAME) $(SRC) $(LIB_PATH)/$(LIB) $(PTF_PATH)/$(PTF)
 
 debug: bug
 	lldb -- $(NAME) -f test7
-
-%.o: ./%.c
-	$(GCC) $(F) -o $@ -c $< -I ./

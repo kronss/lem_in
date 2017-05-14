@@ -12,7 +12,7 @@
 
 #define E "ERROR: "
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
 void		error_lem_in(int i, t_data *data)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
 t_ways		*make_way(t_data *data, t_root *root, int max) //, t_ways *prev)
 {

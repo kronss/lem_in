@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
 int			note_visited_rooms(t_data *data, t_ways *ways, int *visited, int *road)
 {
