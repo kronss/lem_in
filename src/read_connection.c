@@ -82,6 +82,7 @@ void			read_connection(t_data *data, int fd, char **line)
 	check_link(data, *line, ft_strchr(*line, '-') + 1);
 	while ((get_next_line(fd, line) > 0))
 	{
+		ft_printf("%s\n", *line);
 		if (!ft_strcmp(*line, "##start") || !ft_strcmp(*line, "##end"))
 			error_lem_in(6, data);
 		else if (!ft_strncmp(*line, "#", 1))

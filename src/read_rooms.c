@@ -34,6 +34,7 @@ static void		check_start_end(t_data *data, t_node *node)
 static void		read_cmd_room(t_data *data, int fd, char **line)
 {
 	get_next_line(fd, line);
+	ft_printf("%s\n", *line);
 	if (!ft_strncmp(*line, "#", 1))
 		error_lem_in(7, data);
 	else if (!ft_strncmp(*line, "L", 1))
@@ -74,6 +75,7 @@ void			read_rooms(t_data *data, int fd, char **line)
 {
 	while ((get_next_line(fd, line) > 0))
 	{
+		ft_printf("%s\n", *line);
 		if (!ft_strncmp(*line, "L", 1))
 			error_lem_in(3, data);
 		else if (!ft_strncmp(*line, "#", 1))

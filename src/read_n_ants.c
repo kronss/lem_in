@@ -21,6 +21,7 @@ void		read_n_ants(t_data *data, int fd, char **line)
 	lim = 1;
 	while (get_next_line(fd, line) > 0)
 	{
+		ft_printf("%s\n", *line);
 		if (!ft_strcmp("##start", *line) || !ft_strcmp("##end", *line))
 			error_lem_in(22, data);
 		else if (!ft_strncmp("#", *line, 1))
