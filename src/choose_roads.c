@@ -70,7 +70,7 @@ static void		create_set(t_data *data, t_ways *ways, int *visited, int res)
 			return ;
 		del_set(&data->set, data->max_find_ways);
 	}
-	bzero(visited, sizeof(int) * data->max);
+	ft_bzero(visited, sizeof(int) * data->max);
 	if (!(data->set = malloc(sizeof(t_set) * res + 1)))
 		error_lem_in(-1, data);
 	while (ways)
