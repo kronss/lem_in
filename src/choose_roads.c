@@ -108,7 +108,7 @@ void			choose_roads(t_data *data, t_ways *ways, int max)
 
 	while (ways)
 	{
-		bzero(visited, sizeof(int) * max);
+		ft_bzero(visited, sizeof(int) * max);
 		res = find_roads(ways, visited);
 		if (res > data->max_find_ways)
 		{
